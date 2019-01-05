@@ -3,9 +3,11 @@ import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import getWeb3 from "./utils/getWeb3";
 
 import "./App.css";
+import $ from 'jquery';
 import HeaderBar from "./components/HeaderBar.js";
 import AccountInfoBar from "./components/AccountInfoBar.js";
 import { Row, Col } from 'reactstrap';
+import EventInfo from "./components/EventInfo.js";
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null, network: null};
@@ -46,7 +48,10 @@ class App extends Component {
     const response = await contract.methods.get().call();
     // Update react state with the result.
     this.setState({ storageValue: response });
-  }
+  };
+  logEvent(){
+    $('#events').append('<li>testing</li>');
+  };
 
   runExample = async () => {
     const { accounts, contract } = this.state;
@@ -80,7 +85,8 @@ class App extends Component {
               </p>
               <div>The stored value is: {this.state.storageValue}</div></Col>
             <Col lg="3">
-              <AccountInfoBar onClick1={() => this.testExample(30)} network="..." />
+              <AccountInfoBar onClick1={() => this.testExample(30)} onClick2={() => this.logEvent()} network="..." />
+              <EventInfo/>
             </Col>
           </Row>
         </div>
