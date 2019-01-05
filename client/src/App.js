@@ -3,9 +3,10 @@ import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import getWeb3 from "./utils/getWeb3";
 
 import "./App.css";
+import HeaderBar from "./components/HeaderBar.js";
 
 class App extends Component {
-  state = { storageValue: 0, web3: null, accounts: null, contract: null };
+  state = { storageValue: 0, web3: null, accounts: null, contract: null, currentAccount: 0x0 };
 
   componentDidMount = async () => {
     try {
@@ -22,6 +23,7 @@ class App extends Component {
         SimpleStorageContract.abi,
         deployedNetwork && deployedNetwork.address,
       );
+
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
@@ -54,8 +56,7 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <h1>Good to Go!</h1>
-        <p>Your Truffle Box is installed and ready.</p>
+        <HeaderBar title={"Marketplace-dapp"} address={this.state.accounts[0]} accountType={"client"} />
         <h2>Smart Contract Example</h2>
         <p>
           If your contracts compiled and migrated successfully, below will show
