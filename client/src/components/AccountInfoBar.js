@@ -5,11 +5,10 @@ let styleP = { borderBottom: '1px solid black', padding: '5px 5px 2px 0px', marg
 let styleBtn = { margin: '1px' };
 let styleDiv = { textAlign: 'left' }
 
-const AccountInfoBar = ({ onClick1, onClick2, onClick3, network, accountBalance, storeBalance }) => {
+const AccountInfoBar = ({ onClick1, onClick2, onClick3, network, accountBalance, storeBalance, userType }) => {
     return <div style={styleDiv}>
         <p style={styleP}>Account info & actions</p>
-        Network: {network}
-        
+        UserType: {userType}
         <div>
             <Button style={styleBtn} color="primary" size="sm" onClick={onClick1}>btn1</Button>
             <Button style={styleBtn} color="secondary" size="sm" onClick={onClick2}>btn2</Button>
