@@ -32,10 +32,10 @@ contract Marketplace is Ownable{
         return admins[newAdmin];
     }
 
-    /**@dev Disable an administrator address
-       @param adminAddress Address of admin
-       @return False if address is no longer admin
-     */
+    /** @dev Disable an administrator address
+      * @param adminAddress Address of admin
+      * @return False if address is no longer admin
+      */
     function disableAdmin(address adminAddress) public onlyOwner returns(bool) {
         admins[adminAddress] = false;
         emit EditAdmin(adminAddress, "Disabled admin");
