@@ -9,6 +9,8 @@ import AccountInfoBar from "./components/AccountInfoBar.js";
 import { Row, Col } from 'reactstrap';
 import EventInfo from "./components/EventInfo.js";
 import OwnerOnly from "./components/OwnerOnly.js";
+import AdminOnly from "./components/AdminOnly.js";
+
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null, network: null, userType: null };
@@ -43,22 +45,27 @@ class App extends Component {
 
   getUserType = async () => {
     const { accounts, contract } = this.state;
-
-    const isAdmin = await contract.methods.admins(accounts[0]).call();
+  
     var isOwner = false;
     const owner = await contract.methods.owner().call();
     if (owner === accounts[0]) {
       isOwner = true;
     }
+    const isAdmin = await contract.methods.admins(accounts[0]).call();
+    const isStoreOwner = await contract.methods.checkStoreOwner(accounts[0]).call();
+
 
     if (isOwner) {
       this.setState({ userType: "owner" })
     } else if (isAdmin) {
       this.setState({ userType: "admin" })
+    } else if (isStoreOwner) {
+      this.setState({ userType: "storeOwner" })
     } else {
       this.setState({ userType: "client" })
     }
   };
+
 
 
   async testExample(data) {
@@ -73,13 +80,16 @@ class App extends Component {
   // $('#events').append('<li>testing</li>');
 
 
+  /////////////////////////////////////////////////////
+  // Owner only functions                            
+  /////////////////////////////////////////////////////
   /** @dev add admin address from input field. */
   async setAdmin() {
     const { accounts, contract } = this.state;
     const _input = $('#newAdminAddress').val();
     // check if input is valid address
     if (this.state.web3.utils.isAddress(_input)) {
-        await contract.methods.addAdmin(_input).send({ from: accounts[0] }).then(function(){
+      await contract.methods.addAdmin(_input).send({ from: accounts[0] }).then(function () {
         $('#newAdminFormText').text("address added as admin.");
       });
     } else {
@@ -87,30 +97,46 @@ class App extends Component {
     }
   };
 
-    /** @dev disable admin address from input field. */
-    async disableAdmin() {
-      const { accounts, contract } = this.state;
-      const _input = $('#disableAdminAddress').val();
-      if (this.state.web3.utils.isAddress(_input)) {
-          await contract.methods.disableAdmin(_input).send({ from: accounts[0] }).then(function(){
-          $('#disableAdminFormText').text("Address is no longer admin.");
-        });
-      } else {
-        $('#disableAdminFormText').text("Invalid input.");
-      }
-    };
+  /** @dev disable admin address from input field. */
+  async disableAdmin() {
+    const { accounts, contract } = this.state;
+    const _input = $('#disableAdminAddress').val();
+    if (this.state.web3.utils.isAddress(_input)) {
+      await contract.methods.disableAdmin(_input).send({ from: accounts[0] }).then(function () {
+        $('#disableAdminFormText').text("Address is no longer admin.");
+      });
+    } else {
+      $('#disableAdminFormText').text("Invalid input.");
+    }
+  };
 
-    /** @dev check if address from input field is admin. */
-    async checkAdmin() {
-      const { contract } = this.state;
-      const _input = $('#checkAdminAddress').val();
-      if (this.state.web3.utils.isAddress(_input)) {
-        const resp = await contract.methods.admins(_input).call();
-        $('#checkAdminFormText').text("admins() returned " + resp);
-      } else {
-        $('#checkAdminFormText').text("Ivalid input.");
-      }
-    };
+  /** @dev check if address from input field is admin. */
+  async checkAdmin() {
+    const { contract } = this.state;
+    const _input = $('#checkAdminAddress').val();
+    if (this.state.web3.utils.isAddress(_input)) {
+      const resp = await contract.methods.admins(_input).call();
+      $('#checkAdminFormText').text("admins() returned " + resp);
+    } else {
+      $('#checkAdminFormText').text("Ivalid input.");
+    }
+  };
+
+  /////////////////////////////////////////////////////
+  // Admin only functions                            
+  /////////////////////////////////////////////////////
+  /** @dev add storeOwner address from input field. */
+  async setStoreOwner() {
+    const { accounts, contract } = this.state;
+    const _input = $('#newStoreOwnerAddress').val();
+    if (this.state.web3.utils.isAddress(_input)) {
+      await contract.methods.addStoreOwner(_input).send({ from: accounts[0] }).then(function () {
+        $('#newStoreOwnerFormText').text("address added as storeOwner.");
+      });
+    } else {
+      $('#newStoreOwnerFormText').text("Invalid input.");
+    }
+  };
 
 
 
@@ -124,7 +150,8 @@ class App extends Component {
         <div>
           <Row>
             <Col>
-              <OwnerOnly isOwner={this.state.userType} onClickAdd={() => this.setAdmin()} onClickCheck={() => this.checkAdmin()} onClickDisable={() => this.disableAdmin()}/>
+              <OwnerOnly isOwner={this.state.userType} onClickAdd={() => this.setAdmin()} onClickCheck={() => this.checkAdmin()} onClickDisable={() => this.disableAdmin()} />
+              <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()}/>
               <h2>Smart Contract Example</h2>
               <div>The stored value is: {this.state.storageValue}</div>
             </Col>

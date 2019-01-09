@@ -93,7 +93,7 @@ contract Marketplace is Ownable{
       * @param storeOwnerAddress Address of storeOwner
       * @return True if address is a storeOwner
       */
-    function checkStoreOwner(address storeOwnerAddress) public view onlyAdmin returns(bool) {
+    function checkStoreOwner(address storeOwnerAddress) public view returns(bool) {
         uint _id = storeOwnersIds[storeOwnerAddress];
         return storeOwners[_id].enrolled;
     }
