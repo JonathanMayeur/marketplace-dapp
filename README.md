@@ -1,5 +1,5 @@
 # Marketplace-dapp
-Final project Consensys course 2018. React Truffle Box was used as a starter template.
+Final project ConsenSys course 2018. [react-truffle-box](https://github.com/truffle-box/react-box) was used as a starter template. 
 
 ## What does the project do
 
@@ -42,7 +42,7 @@ First ensure you are in a the project directory.
     ```
 
 ## User stories
-###Owner
+1. Owner
 
-###Admin
+2. Admin
 

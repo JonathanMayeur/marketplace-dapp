@@ -9,6 +9,15 @@ contract Marketplace is Ownable{
     //
     mapping (address => bool) public admins;
 
+    uint256 storeOwnersCounter;
+    struct StoreOwner {
+        address storeOwnerAddress;
+        uint256 balance;
+        bool enrolled;
+    }
+    mapping (uint => StoreOwner) public storeOwners;
+    mapping (address => uint) public storeOwnersIds;
+
     //
     // Modifiers
     // 
@@ -21,6 +30,7 @@ contract Marketplace is Ownable{
     // Events
     //
     event EditAdmin(address admin, string action);
+    event EditStoreOwner(address storeOwner, string action);
 
     //
     // Functions
@@ -50,10 +60,49 @@ contract Marketplace is Ownable{
         return admins[adminAddress];
     }
 
-    //
-    // Admin only functions
-    //
 
+    /////////////////////////////////////////////////////
+    // Admin only functions
+    /////////////////////////////////////////////////////
+
+    /** @dev Add an storeOwner address.
+      * @param newStoreOwner Address of new storeOwner.
+      * @return True if address is a storeOwner.
+      */
+    function addStoreOwner(address newStoreOwner) public onlyAdmin returns(bool) {
+        storeOwnersCounter++;
+        require(!checkStoreOwner(newStoreOwner));
+        storeOwners[storeOwnersCounter] = StoreOwner(newStoreOwner, 0, true);
+        storeOwnersIds[newStoreOwner] = storeOwnersCounter;
+        emit EditStoreOwner(newStoreOwner, "Added new storeOwner.");
+        return storeOwners[storeOwnersCounter].enrolled;
+    }
+
+    /** @dev Disable a storeOwner address.
+      * @param storeOwnerAddress Address of storeOwner.
+      * @return False if address is no longer storeOwner.
+      */
+    function disableStoreOwner(address storeOwnerAddress) public onlyAdmin returns(bool) {
+        uint _id = storeOwnersIds[storeOwnerAddress];
+        storeOwners[_id].enrolled = false;
+        emit EditStoreOwner(storeOwnerAddress, "Disabled storeOwner.");
+        return storeOwners[storeOwnersCounter].enrolled;
+    }  
+
+    /** @dev check if address is storeOwner
+      * @param storeOwnerAddress Address of storeOwner.
+      * @return True if address is a storeOwner
+      */
+    function checkStoreOwner(address storeOwnerAddress) public view onlyAdmin returns(bool) {
+        uint _id = storeOwnersIds[storeOwnerAddress];
+        return storeOwners[_id].enrolled;
+    }
+
+
+
+    /////////////////////////////////////////////////////
+    // StoreOwner only functions
+    /////////////////////////////////////////////////////    
 
 
     // -----------------------------------------------------------------
