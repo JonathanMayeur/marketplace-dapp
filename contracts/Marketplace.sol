@@ -10,6 +10,14 @@ contract Marketplace is Ownable{
     mapping (address => bool) public admins;
 
     //
+    // Modifiers
+    // 
+    modifier onlyAdmin(){
+        require(admins[msg.sender] == true);
+        _;
+    }
+
+    //
     // Events
     //
     event EditAdmin(address admin, string action);
@@ -18,9 +26,9 @@ contract Marketplace is Ownable{
     // Functions
     //
 
-    //
-    // Owner only functions
-    //
+    /////////////////////////////////////////////////////
+    // Owner only functions                            
+    /////////////////////////////////////////////////////
 
     /** @dev Add an administrator address.
       * @param newAdmin Address of new admin.
@@ -41,6 +49,11 @@ contract Marketplace is Ownable{
         emit EditAdmin(adminAddress, "Disabled admin");
         return admins[adminAddress];
     }
+
+    //
+    // Admin only functions
+    //
+
 
 
     // -----------------------------------------------------------------
