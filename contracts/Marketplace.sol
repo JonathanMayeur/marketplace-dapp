@@ -78,9 +78,9 @@ contract Marketplace is Ownable{
         return storeOwners[storeOwnersCounter].enrolled;
     }
 
-    /** @dev Disable a storeOwner address.
-      * @param storeOwnerAddress Address of storeOwner.
-      * @return False if address is no longer storeOwner.
+    /** @dev Disable a storeOwner address
+      * @param storeOwnerAddress Address of storeOwner
+      * @return False if address is no longer storeOwner
       */
     function disableStoreOwner(address storeOwnerAddress) public onlyAdmin returns(bool) {
         uint _id = storeOwnersIds[storeOwnerAddress];
@@ -90,7 +90,7 @@ contract Marketplace is Ownable{
     }  
 
     /** @dev check if address is storeOwner
-      * @param storeOwnerAddress Address of storeOwner.
+      * @param storeOwnerAddress Address of storeOwner
       * @return True if address is a storeOwner
       */
     function checkStoreOwner(address storeOwnerAddress) public view onlyAdmin returns(bool) {
@@ -98,7 +98,16 @@ contract Marketplace is Ownable{
         return storeOwners[_id].enrolled;
     }
 
-
+    /** @dev Get array of storeOwner addresses
+      * @return Array of storeOwner addresses
+      */
+    function getStoreOwners() public view onlyAdmin returns(address[] memory) {
+        address[] memory _storeOwners = new address[](storeOwnersCounter);
+        for (uint i = 1; i <= storeOwnersCounter; i++) {
+            _storeOwners[i] = storeOwners[i].storeOwnerAddress;            
+        }
+        return _storeOwners;
+    }
 
     /////////////////////////////////////////////////////
     // StoreOwner only functions
