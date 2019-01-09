@@ -2215,10 +2215,16 @@
       "links": {},
       "address": "0x529590fFDed379d6e2726058967BD2F2F1B91AAE",
       "transactionHash": "0xb4220feae11da0fe8581540a7ec0de559e7dbbf71089ddeef08d896725f9ee63"
+    },
+    "1547034641063": {
+      "events": {},
+      "links": {},
+      "address": "0xa179e90F02D9bA24f93C21b5393fd509d780c84d",
+      "transactionHash": "0x5dc552091a0e56814e04eaac7dfcabb2c47bb8874fb348e8103544857580e84d"
     }
   },
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-08T20:12:45.873Z",
+  "updatedAt": "2019-01-09T11:51:09.428Z",
   "devdoc": {
     "methods": {
       "addAdmin(address)": {

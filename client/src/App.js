@@ -41,32 +41,6 @@ class App extends Component {
     }
   };
 
-  async testExample(data) {
-    const { accounts, contract } = this.state;
-    await contract.methods.set(data).send({ from: accounts[0] });
-
-    // Get the value from the contract to prove it worked.
-    const response = await contract.methods.get().call();
-    // Update react state with the result.
-    this.setState({ storageValue: response });
-  };
-
-  logEvent() {
-    $('#events').append('<li>testing</li>');
-  };
-
-  async setAdmin() {
-    const { accounts, contract } = this.state;
-    const _input = $('#newAdminAddress').val();
-
-    console.log(this.state.web3.utils.isAddress(_input));
-
-    if(this.state.web3.utils.isAddress(_input)){
-      const resp = await contract.methods.addAdmin(_input).send({ from: accounts[0] });
-      console.log(resp);
-    }
-  };
-
   getUserType = async () => {
     const { accounts, contract } = this.state;
 
@@ -86,6 +60,60 @@ class App extends Component {
     }
   };
 
+
+  async testExample(data) {
+    const { accounts, contract } = this.state;
+    await contract.methods.set(data).send({ from: accounts[0] });
+
+    // Get the value from the contract to prove it worked.
+    const response = await contract.methods.get().call();
+    // Update react state with the result.
+    this.setState({ storageValue: response });
+  };
+  // $('#events').append('<li>testing</li>');
+
+
+  /** @dev add admin address from input field. */
+  async setAdmin() {
+    const { accounts, contract } = this.state;
+    const _input = $('#newAdminAddress').val();
+    // check if input is valid address
+    if (this.state.web3.utils.isAddress(_input)) {
+        await contract.methods.addAdmin(_input).send({ from: accounts[0] }).then(function(){
+        $('#newAdminFormText').text("address added as admin.");
+      });
+    } else {
+      $('#newAdminFormText').text("Invalid input.");
+    }
+  };
+
+    /** @dev disable admin address from input field. */
+    async disableAdmin() {
+      const { accounts, contract } = this.state;
+      const _input = $('#disableAdminAddress').val();
+      if (this.state.web3.utils.isAddress(_input)) {
+          await contract.methods.disableAdmin(_input).send({ from: accounts[0] }).then(function(){
+          $('#disableAdminFormText').text("Address is no longer admin.");
+        });
+      } else {
+        $('#disableAdminFormText').text("Invalid input.");
+      }
+    };
+
+    /** @dev check if address from input field is admin. */
+    async checkAdmin() {
+      const { contract } = this.state;
+      const _input = $('#checkAdminAddress').val();
+      if (this.state.web3.utils.isAddress(_input)) {
+        const resp = await contract.methods.admins(_input).call();
+        $('#checkAdminFormText').text("admins() returned " + resp);
+      } else {
+        $('#checkAdminFormText').text("Ivalid input.");
+      }
+    };
+
+
+
   render() {
     if (!this.state.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
@@ -96,12 +124,12 @@ class App extends Component {
         <div>
           <Row>
             <Col>
-              <OwnerOnly isOwner={this.state.userType} onClickAdd={() => this.setAdmin()}/>
+              <OwnerOnly isOwner={this.state.userType} onClickAdd={() => this.setAdmin()} onClickCheck={() => this.checkAdmin()} onClickDisable={() => this.disableAdmin()}/>
               <h2>Smart Contract Example</h2>
               <div>The stored value is: {this.state.storageValue}</div>
             </Col>
             <Col lg="3">
-              <AccountInfoBar onClick1={() => this.testExample(30)} onClick2={() => this.logEvent()} userType={this.state.userType} />
+              <AccountInfoBar onClick1={() => this.testExample(30)} userType={this.state.userType} />
               <EventInfo />
             </Col>
           </Row>
