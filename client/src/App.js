@@ -13,7 +13,7 @@ import AdminOnly from "./components/AdminOnly.js";
 
 
 class App extends Component {
-  state = { storageValue: 0, web3: null, accounts: null, contract: null, network: null, userType: null };
+  state = { storageValue: 0, web3: null, accounts: null, contract: null, network: null, userType: null, storeOwners: [] };
 
   componentDidMount = async () => {
     try {
@@ -59,6 +59,7 @@ class App extends Component {
       this.setState({ userType: "owner" })
     } else if (isAdmin) {
       this.setState({ userType: "admin" })
+      this.reloadStoreOwners();
     } else if (isStoreOwner) {
       this.setState({ userType: "storeOwner" })
     } else {
@@ -138,7 +139,23 @@ class App extends Component {
     }
   };
 
+  async reloadStoreOwners() {
+    const { contract } = this.state; 
+    var temp = [];
 
+    await contract.methods.getNumberOfStoreOwners().call()
+    .then(function(storeOwnerIds){
+      for(var i = 1; i<= storeOwnerIds; i++){
+        var _address = contract.methods.storeOwners(i).call()
+        .then(function(result){
+          console.log(result.storeOwnerAddress);
+          temp.push(result);
+        });
+      }
+    });
+    console.log(temp);
+    this.setState({ storeOwners: temp });
+  }
 
   render() {
     if (!this.state.web3) {
@@ -151,7 +168,8 @@ class App extends Component {
           <Row>
             <Col>
               <OwnerOnly isOwner={this.state.userType} onClickAdd={() => this.setAdmin()} onClickCheck={() => this.checkAdmin()} onClickDisable={() => this.disableAdmin()} />
-              <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()}/>
+              <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()} storeOwnerArray={this.state.storeOwners}/>
+
               <h2>Smart Contract Example</h2>
               <div>The stored value is: {this.state.storageValue}</div>
             </Col>

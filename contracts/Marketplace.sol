@@ -11,6 +11,7 @@ contract Marketplace is Ownable{
 
     uint256 storeOwnersCounter;
     struct StoreOwner {
+        uint id;
         address storeOwnerAddress;
         uint256 balance;
         bool enrolled;
@@ -69,10 +70,10 @@ contract Marketplace is Ownable{
       * @param newStoreOwner Address of new storeOwner.
       * @return True if address is a storeOwner.
       */
-    function addStoreOwner(address newStoreOwner) public onlyAdmin returns(bool) {
-        storeOwnersCounter++;
+    function addStoreOwner(address newStoreOwner) public onlyAdmin returns(bool){
         require(!checkStoreOwner(newStoreOwner));
-        storeOwners[storeOwnersCounter] = StoreOwner(newStoreOwner, 0, true);
+        storeOwnersCounter++;
+        storeOwners[storeOwnersCounter] = StoreOwner(storeOwnersCounter,newStoreOwner, 0, true);
         storeOwnersIds[newStoreOwner] = storeOwnersCounter;
         emit EditStoreOwner(newStoreOwner, "Added new storeOwner.");
         return storeOwners[storeOwnersCounter].enrolled;
@@ -98,15 +99,11 @@ contract Marketplace is Ownable{
         return storeOwners[_id].enrolled;
     }
 
-    /** @dev Get array of storeOwner addresses
-      * @return Array of storeOwner addresses
+    /** @dev Get number of storeOwners
+      * @return storeOwnersCounter;
       */
-    function getStoreOwners() public view onlyAdmin returns(address[] memory) {
-        address[] memory _storeOwners = new address[](storeOwnersCounter);
-        for (uint i = 1; i <= storeOwnersCounter; i++) {
-            _storeOwners[i] = storeOwners[i].storeOwnerAddress;            
-        }
-        return _storeOwners;
+    function getNumberOfStoreOwners() public view returns(uint){
+        return storeOwnersCounter;
     }
 
     /////////////////////////////////////////////////////
