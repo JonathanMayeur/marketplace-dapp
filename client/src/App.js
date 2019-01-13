@@ -129,32 +129,50 @@ class App extends Component {
   /** @dev add storeOwner address from input field. */
   async setStoreOwner() {
     const { accounts, contract } = this.state;
-    const _input = $('#newStoreOwnerAddress').val();
+    const _input = $('#newStoreOwnerAddress').val().trim();
     if (this.state.web3.utils.isAddress(_input)) {
       await contract.methods.addStoreOwner(_input).send({ from: accounts[0] }).then(function () {
         $('#newStoreOwnerFormText').text("address added as storeOwner.");
+      }).then(()=>{
+        this.reloadStoreOwners();
       });
     } else {
       $('#newStoreOwnerFormText').text("Invalid input.");
     }
   };
 
+    /** @dev disable storeOwner address from input field. */
+    async disableStoreOwner() {
+      console.log("disable clicked");
+      const { accounts, contract } = this.state;
+      const _input = $('#disableStoreOwnerAddress').val().trim();
+      if (this.state.web3.utils.isAddress(_input)) {
+        await contract.methods.disableStoreOwner(_input).send({ from: accounts[0] }).then(function () {
+          $('#disableStoreOwnerFormText').text("address disabled as storeOwner.");
+        }).then(()=>{
+          this.reloadStoreOwners();
+        });
+      } else {
+        $('#disableStoreOwnerFormText').text("Invalid input.");
+      }
+    };
+
   async reloadStoreOwners() {
     const { contract } = this.state; 
-    var temp = [];
+    var _this = this;
+    this.setState({storeOwners: []});
 
     await contract.methods.getNumberOfStoreOwners().call()
-    .then(function(storeOwnerIds){
+    .then((storeOwnerIds) => { 
       for(var i = 1; i<= storeOwnerIds; i++){
-        var _address = contract.methods.storeOwners(i).call()
-        .then(function(result){
-          console.log(result.storeOwnerAddress);
-          temp.push(result);
+        contract.methods.storeOwners(i).call().then(result => {
+          // temp.push({id: result[0], address: result[1], enrolled: result[3].toString()});
+          _this.setState({storeOwners: [...this.state.storeOwners, {id: result[0], address: result[1], enrolled: result[3].toString()}]
+          })
+
         });
       }
     });
-    console.log(temp);
-    this.setState({ storeOwners: temp });
   }
 
   render() {
@@ -168,7 +186,7 @@ class App extends Component {
           <Row>
             <Col>
               <OwnerOnly isOwner={this.state.userType} onClickAdd={() => this.setAdmin()} onClickCheck={() => this.checkAdmin()} onClickDisable={() => this.disableAdmin()} />
-              <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()} storeOwnerArray={this.state.storeOwners}/>
+              <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()} onClickDisable={() => this.disableStoreOwner()} storeOwnerArray={this.state.storeOwners}/>
 
               <h2>Smart Contract Example</h2>
               <div>The stored value is: {this.state.storageValue}</div>

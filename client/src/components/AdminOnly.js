@@ -3,19 +3,11 @@ import { Row, Col, FormGroup, Form, FormText, Input, Button, Table } from 'react
 
 let styleP = { borderBottom: '1px solid black', padding: '5px 5px 2px 0px', margin: '10px', textAlign: 'left' };
 let styleF = { margin: '0px 0px 0px 10px' };
+let styleT = { margin: '0px 0px 0px 10px' };
 let styleFG = { textAlign: 'left', marginLeft: '5px' };
 let styleBtn = { width: '80px' };
 
-const friends = [
-    { id: 1, name: 'Dave', age: 50 },
-    { id: 2, name: 'Kellie', age: 42 },
-    { id: 3, name: 'Max', age: 12 },
-    { id: 4, name: 'Jack', age: 12 }
-];
-
-
-
-const OwnerOnly = ({ isOwner, onClickAdd, storeOwnerArray: [] }) => {
+const AdminOnly = ({ isOwner, onClickAdd, onClickDisable, storeOwnerArray }) => {
     if (isOwner === "admin") {
         return (
             <div>
@@ -43,12 +35,12 @@ const OwnerOnly = ({ isOwner, onClickAdd, storeOwnerArray: [] }) => {
                         </Form>
                     </Col>
                     <Col xs="2">
-                        <Button style={styleBtn} onClick={onClickAdd}>Disable</Button>
+                        <Button style={styleBtn} onClick={onClickDisable}>Disable</Button>
                     </Col>
                 </Row>
 
                 <Row>
-                    <Table size="sm" id="table">
+                    <Table size="sm" id="table" style={styleT}>
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -57,15 +49,13 @@ const OwnerOnly = ({ isOwner, onClickAdd, storeOwnerArray: [] }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {friends.map(p => <tr key={p.id}>
+                            {storeOwnerArray.map(p => <tr key={p.id}>
                                 <td>{p.id}</td>
-                                <td>{p.name}</td>
+                                <td>{p.address}</td>
+                                <td>{p.enrolled}</td>
                             </tr>)}
                         </tbody>
                     </Table>
-                    <ul>
-                        {storeOwnerArray.map(p => <li key={p.id}>{p.id}</li>)}
-                    </ul>;
                 </Row>
             </div>
         );
@@ -74,4 +64,4 @@ const OwnerOnly = ({ isOwner, onClickAdd, storeOwnerArray: [] }) => {
     }
 }
 
-export default OwnerOnly
+export default AdminOnly

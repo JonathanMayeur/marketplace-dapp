@@ -6018,10 +6018,16 @@
       "links": {},
       "address": "0x7D66158556EF1Acfbf48E804DBa48073AC9d0CD9",
       "transactionHash": "0x6000009e2221c6c2e34d2712b5ecdfb7b2eadf1cdc8ef853397a6a40834e0830"
+    },
+    "1547377720164": {
+      "events": {},
+      "links": {},
+      "address": "0x77A0B49CAAf93319CCd9BeB56FFC6a1302D059d5",
+      "transactionHash": "0xcca2fa8529efc1c220e734f427d6a204d6df1f1ce9398b480701436b98c3d6ae"
     }
   },
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-11T19:48:59.104Z",
+  "updatedAt": "2019-01-13T11:19:03.514Z",
   "devdoc": {
     "methods": {
       "addAdmin(address)": {
