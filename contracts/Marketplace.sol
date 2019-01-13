@@ -110,14 +110,4 @@ contract Marketplace is Ownable{
     // StoreOwner only functions
     /////////////////////////////////////////////////////    
 
-
-    // -----------------------------------------------------------------
-    // Test code
-    uint storedData;
-    function set(uint x) public {
-        storedData = x;
-    }
-    function get() public view returns (uint) {
-        return storedData;
-    }
 }

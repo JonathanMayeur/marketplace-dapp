@@ -13,7 +13,7 @@ import AdminOnly from "./components/AdminOnly.js";
 
 
 class App extends Component {
-  state = { storageValue: 0, web3: null, accounts: null, contract: null, network: null, userType: null, storeOwners: [] };
+  state = { web3: null, accounts: null, contract: null, network: null, userType: null, storeOwners: [] };
 
   componentDidMount = async () => {
     try {
@@ -66,20 +66,6 @@ class App extends Component {
       this.setState({ userType: "client" })
     }
   };
-
-
-
-  async testExample(data) {
-    const { accounts, contract } = this.state;
-    await contract.methods.set(data).send({ from: accounts[0] });
-
-    // Get the value from the contract to prove it worked.
-    const response = await contract.methods.get().call();
-    // Update react state with the result.
-    this.setState({ storageValue: response });
-  };
-  // $('#events').append('<li>testing</li>');
-
 
   /////////////////////////////////////////////////////
   // Owner only functions                            
@@ -175,6 +161,10 @@ class App extends Component {
     });
   }
 
+  /////////////////////////////////////////////////////
+  // StoreOwner only functions                            
+  /////////////////////////////////////////////////////
+
   render() {
     if (!this.state.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
@@ -187,12 +177,9 @@ class App extends Component {
             <Col>
               <OwnerOnly isOwner={this.state.userType} onClickAdd={() => this.setAdmin()} onClickCheck={() => this.checkAdmin()} onClickDisable={() => this.disableAdmin()} />
               <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()} onClickDisable={() => this.disableStoreOwner()} storeOwnerArray={this.state.storeOwners}/>
-
-              <h2>Smart Contract Example</h2>
-              <div>The stored value is: {this.state.storageValue}</div>
             </Col>
             <Col lg="3">
-              <AccountInfoBar onClick1={() => this.testExample(30)} userType={this.state.userType} />
+              <AccountInfoBar userType={this.state.userType} />
               <EventInfo />
             </Col>
           </Row>
