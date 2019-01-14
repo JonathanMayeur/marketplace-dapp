@@ -19,19 +19,37 @@ contract Marketplace is Ownable{
     mapping (uint => StoreOwner) public storeOwners;
     mapping (address => uint) public storeOwnersIds;
 
+    uint256 articleCounter;
+    struct Article {
+        uint id;
+        string name;
+        string description;
+        uint256 price;
+        address seller;
+        address buyer;
+    }
+    mapping (uint => Article) public articles;
+    mapping (address => uint[]) public articleIds;
+
     //
     // Modifiers
     // 
     modifier onlyAdmin(){
-        require(admins[msg.sender] == true);
+        require(admins[msg.sender]);
+        _;
+    }
+    modifier onlyStoreOwner(){
+        require(checkStoreOwner(msg.sender));
         _;
     }
 
     //
     // Events
     //
-    event EditAdmin(address admin, string action);
-    event EditStoreOwner(address storeOwner, string action);
+    event EditAdmin(address _admin, string _action);
+    event EditStoreOwner(address _storeOwner, string _action);
+    event LogSellArticle(uint indexed _id, address indexed _seller, string _name, uint _price);
+    event LogBuyArticle(uint indexed _id, address indexed _buyer, string _name, uint _price);
 
     //
     // Functions
@@ -108,6 +126,34 @@ contract Marketplace is Ownable{
 
     /////////////////////////////////////////////////////
     // StoreOwner only functions
-    /////////////////////////////////////////////////////    
+    ///////////////////////////////////////////////////// 
 
+    /** @dev Add an article for sale
+      * @param name Name of article
+      * @param description Description of article
+      * @param price Price of article
+      */   
+    function sellArticle(string memory name, string memory description, uint256 price) public onlyStoreOwner {
+        //check inputs!!
+        articleCounter++;
+
+        articles[articleCounter] = Article (
+            articleCounter,
+            name,
+            description,
+            price,
+            msg.sender,
+            address(0)
+        );
+
+        articleIds[msg.sender].push(articleCounter);
+        
+        emit LogSellArticle(articleCounter, msg.sender, name, price);
+    }
+
+    /** @dev get articleIds from articles where seller is storeOwner
+      * @return uint[]*/
+    function getArticleIds() public view onlyStoreOwner returns(uint[] memory){
+        return articleIds[msg.sender]; 
+    }
 }

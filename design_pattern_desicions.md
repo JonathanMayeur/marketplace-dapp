@@ -17,7 +17,12 @@ The pattern adds an option to disable critical contract functionality in case of
 This restricts who can make modifications to the contract’s state or call the contract’s functions. The use of function modifiers makes these restrictions highly readable. The modifiers onlyOwner, onlyAdmin and onlyStoreOwner are used. 
 ```Solidity
     modifier onlyAdmin(){
-        require(admins[msg.sender] == true);
+        require(admins[msg.sender]);
+        _;
+    }
+    
+    modifier onlyStoreOwner(){
+        require(checkStoreOwner(msg.sender));
         _;
     }
 ```
