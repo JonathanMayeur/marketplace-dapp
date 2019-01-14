@@ -29,13 +29,13 @@ const AdminOnly = ({ isOwner, onClickAdd, onClickDisable, storeOwnerArray }) => 
                     <Col xs="10">
                         <Form style={styleF}>
                             <FormGroup>
-                                <Input type="text" id="disableStoreOwnerAddress" placeholder="disable store owner address" />
+                                <Input type="text" id="disableStoreOwnerAddress" placeholder="change status enrolled of store owner address" />
                                 <FormText style={styleFG} id="disableStoreOwnerFormText">_</FormText>
                             </FormGroup>
                         </Form>
                     </Col>
                     <Col xs="2">
-                        <Button style={styleBtn} onClick={onClickDisable}>Disable</Button>
+                        <Button style={styleBtn} onClick={onClickDisable}>Change</Button>
                     </Col>
                 </Row>
 

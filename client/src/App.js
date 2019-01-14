@@ -30,7 +30,6 @@ class App extends Component {
         MarketplaceContract.abi,
         deployedNetwork && deployedNetwork.address,
       );
-
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       this.setState({ web3, accounts, contract: instance }, this.getUserType);
@@ -66,6 +65,21 @@ class App extends Component {
       this.setState({ userType: "client" })
     }
   };
+
+  // async listenToEvents(){
+  //   const { contract } = this.state;
+
+  //    await contract.methods.EditAdmin({}, {}).watch(function(error, event){
+  //       if(!error){
+  //         // $('#events').append('<li class="list-group-item">' + event.args._name + ' is now for sale</li>');
+  //         console.log("catched event");
+  //         console.log(event);
+  //       }else{
+  //         console.error(error);
+  //       }
+  //       // App.reloadArticles();
+  //     });
+  //  };
 
   /////////////////////////////////////////////////////
   // Owner only functions                            
@@ -128,12 +142,11 @@ class App extends Component {
   };
 
     /** @dev disable storeOwner address from input field. */
-    async disableStoreOwner() {
-      console.log("disable clicked");
+    async changeStatusEnrolledStoreOwner() {
       const { accounts, contract } = this.state;
       const _input = $('#disableStoreOwnerAddress').val().trim();
       if (this.state.web3.utils.isAddress(_input)) {
-        await contract.methods.disableStoreOwner(_input).send({ from: accounts[0] }).then(function () {
+        await contract.methods.changeStatusEnrolledStoreOwner(_input).send({ from: accounts[0] }).then(function () {
           $('#disableStoreOwnerFormText').text("address disabled as storeOwner.");
         }).then(()=>{
           this.reloadStoreOwners();
@@ -176,7 +189,7 @@ class App extends Component {
           <Row>
             <Col>
               <OwnerOnly isOwner={this.state.userType} onClickAdd={() => this.setAdmin()} onClickCheck={() => this.checkAdmin()} onClickDisable={() => this.disableAdmin()} />
-              <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()} onClickDisable={() => this.disableStoreOwner()} storeOwnerArray={this.state.storeOwners}/>
+              <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()} onClickDisable={() => this.changeStatusEnrolledStoreOwner()} storeOwnerArray={this.state.storeOwners}/>
             </Col>
             <Col lg="3">
               <AccountInfoBar userType={this.state.userType} />

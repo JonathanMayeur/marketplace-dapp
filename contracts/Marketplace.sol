@@ -79,14 +79,14 @@ contract Marketplace is Ownable{
         return storeOwners[storeOwnersCounter].enrolled;
     }
 
-    /** @dev Disable a storeOwner address
+    /** @dev change enrolled status of a storeOwner address
       * @param storeOwnerAddress Address of storeOwner
       * @return False if address is no longer storeOwner
       */
-    function disableStoreOwner(address storeOwnerAddress) public onlyAdmin returns(bool) {
+    function changeStatusEnrolledStoreOwner(address storeOwnerAddress) public onlyAdmin returns(bool) {
         uint _id = storeOwnersIds[storeOwnerAddress];
-        storeOwners[_id].enrolled = false;
-        emit EditStoreOwner(storeOwnerAddress, "Disabled storeOwner.");
+        storeOwners[_id].enrolled = !storeOwners[_id].enrolled;
+        emit EditStoreOwner(storeOwnerAddress, "Changed enrolled status storeOwner.");
         return storeOwners[storeOwnersCounter].enrolled;
     }  
 
