@@ -15,7 +15,7 @@ import StoreOwnerOnly from "./components/StoreOwnerOnly.js";
 
 
 class App extends Component {
-  state = { web3: null, accounts: null, contract: null, network: null, userType: null, storeOwners: [] };
+  state = { web3: null, accounts: null, contract: null, network: null, userType: null, storeOwners: [], articles: [] };
 
   componentDidMount = async () => {
     try {
@@ -171,17 +171,40 @@ class App extends Component {
     const _name = $('#articleName').val();
     const _description = $('#articleDescription').val();
     const _price = Number($('#articlePrice').val());
+    var _this = this;
 
     if((_name.trim() == '') || (_price == 0)){
       $('#articleReturn').text("False inputs.");
+      this.reloadArticles();
       return false;
     }
 
     await contract.methods.sellArticle(_name, _description, _price).send({ from: accounts[0] }).then(function () {
       $('#articleReturn').text("article added.");
+      _this.reloadArticles();
     });
-
   };
+
+  /** @dev get articles from storeOwner and put in react state variable */
+  async reloadArticles(){
+    const { accounts, contract } = this.state;
+    var _this = this;
+    this.setState({ articles: [] });
+
+    await contract.methods.getArticleIds().call({from: accounts[0]})
+      .then((articleIds) => {
+        articleIds.forEach(id => {
+          contract.methods.articles(id).call().then(article => {
+            console.log(article[0], article[1], article[2], article[4], article[5], article[6]);
+            _this.setState({
+              articles: [...this.state.articles, {id: article[0], name: article[1].toString(), description: article[2].toString(), price: article[3], buyer: article[5], articleState: article[6]}]
+            });
+          });
+        });
+      });
+  }
+
+
 
   render() {
     if (!this.state.web3) {
@@ -195,7 +218,7 @@ class App extends Component {
             <Col>
               <OwnerOnly isOwner={this.state.userType} onClickAdd={() => this.setAdmin()} onClickCheck={() => this.checkAdmin()} onClickDisable={() => this.disableAdmin()} />
               <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()} onClickDisable={() => this.changeStatusEnrolledStoreOwner()} storeOwnerArray={this.state.storeOwners} />
-              <StoreOwnerOnly isOwner={this.state.userType} onClickAdd={()=> this.addArticle()}/>
+              <StoreOwnerOnly isOwner={this.state.userType} onClickAdd={()=> this.addArticle()} articlesArray={this.state.articles}/>
             </Col>
             <Col lg="3">
               <AccountInfoBar userType={this.state.userType} />

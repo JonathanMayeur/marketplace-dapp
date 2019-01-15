@@ -6,7 +6,7 @@ let styleF = { margin: '0px 0px 0px 10px' };
 let styleT = { margin: '0px 0px 0px 10px' };
 let styleBtn = { width: '200px', margin: '10px' };
 
-const AdminOnly = ({ isOwner, onClickAdd, onClickDisable, storeOwnerArray }) => {
+const AdminOnly = ({ isOwner, onClickAdd, onClickDisable, articlesArray }) => {
     if (isOwner === "storeOwner") {
         return (
             <div>
@@ -42,11 +42,14 @@ const AdminOnly = ({ isOwner, onClickAdd, onClickDisable, storeOwnerArray }) => 
                             </tr>
                         </thead>
                         <tbody>
-                            {/* {storeOwnerArray.map(p => <tr key={p.id}>
+                            {articlesArray.map(p => <tr key={p.id}>
                                 <td>{p.id}</td>
-                                <td>{p.address}</td>
-                                <td>{p.enrolled}</td>
-                            </tr>)} */}
+                                <td>{p.name}</td>
+                                <td>{p.description}</td>
+                                <td>{p.price}</td>
+                                <td>{p.buyer}</td>
+                                <td>{p.articleState}</td>
+                            </tr>)}
                         </tbody>
                     </Table>
                 </Row>
