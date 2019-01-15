@@ -8752,10 +8752,16 @@
       "links": {},
       "address": "0x766D5d778d1b5FB5650B4802DDF9B64c1798D4A6",
       "transactionHash": "0x08f0e62ce00506fd2bf9d325b6393b9451f87d04a713efd99f434dc7aac7f535"
+    },
+    "1547587383056": {
+      "events": {},
+      "links": {},
+      "address": "0x2C69245BdE90563e4E6FC9b189d979293612339f",
+      "transactionHash": "0x361c614698779b77dbd2c2c0b70933f9d7308b3f48eac6c5b4cd98cdae5dae0a"
     }
   },
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-14T21:30:03.226Z",
+  "updatedAt": "2019-01-15T21:26:15.866Z",
   "devdoc": {
     "methods": {
       "addAdmin(address)": {

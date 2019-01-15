@@ -71,28 +71,39 @@ contract("Marketplace", accounts => {
 
 
     // Test if it adds an article to articles mapping.
-    it("should let us sell a first article", function (){
-        return Marketplace.deployed().then(function (instance){
+    it("should let us sell a first article", function () {
+        return Marketplace.deployed().then(function (instance) {
             MarketplaceInstance = instance;
             MarketplaceInstance.changeStatusEnrolledStoreOwner(accounts[2], { from: accounts[1] });
             return MarketplaceInstance.storeOwners(1);
-        }).then(function (storeOwner){
+        }).then(function (storeOwner) {
             assert.isTrue(storeOwner.enrolled, "The address was not set as storeOwner.");
-        }).then(function (){
-            MarketplaceInstance.sellArticle(articleName1, articleDescription1, articlePrice1, { from: accounts[2]});
+        }).then(function () {
+            MarketplaceInstance.sellArticle(articleName1, articleDescription1, articlePrice1, { from: accounts[2] });
             return MarketplaceInstance.articles(1);
-        }).then(function (data){
+        }).then(function (data) {
             assert.equal(data[0].toNumber(), 1, "article id must be 1");
             assert.equal(data[1], articleName1, "article name must be " + articleName1);
             assert.equal(data[2], articleDescription1, "article description must be " + articleDescription1);
             assert.equal(data[3], articlePrice1, "article price must be " + articlePrice1);
             assert.equal(data[4], accounts[2], "seller must be " + accounts[2]);
             assert.equal(data[5], 0x0, "buyer must be empty");
-        }).then(function(){
-            return MarketplaceInstance.getArticleIds({from: accounts[2]})
-        }).then(function(articleIds){
+        }).then(function () {
+            return MarketplaceInstance.getArticleIds({ from: accounts[2] })
+        }).then(function (articleIds) {
             assert.equal(articleIds[0], 1, "article Id should be retrievable from mapping.");
         });
+    });
+
+    // Test the modifier onlyStoreOwner.
+    it("should revert when calling onlyStoreOwner function from non storeOwner address", async function () {
+        try {
+            await MarketplaceInstance.getArticleIds({ from: accounts[3] }).then(function () { })
+            assert.fail("The transaction should have thrown an error");
+        }
+        catch (err) {
+            assert.include(err.message, "revert", "The error message should contain 'revert'");
+        }
     });
 
 

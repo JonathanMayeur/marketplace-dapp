@@ -10,6 +10,8 @@ import { Row, Col } from 'reactstrap';
 import EventInfo from "./components/EventInfo.js";
 import OwnerOnly from "./components/OwnerOnly.js";
 import AdminOnly from "./components/AdminOnly.js";
+import StoreOwnerOnly from "./components/StoreOwnerOnly.js";
+
 
 
 class App extends Component {
@@ -44,7 +46,7 @@ class App extends Component {
 
   getUserType = async () => {
     const { accounts, contract } = this.state;
-  
+
     var isOwner = false;
     const owner = await contract.methods.owner().call();
     if (owner === accounts[0]) {
@@ -65,21 +67,6 @@ class App extends Component {
       this.setState({ userType: "client" })
     }
   };
-
-  // async listenToEvents(){
-  //   const { contract } = this.state;
-
-  //    await contract.methods.EditAdmin({}, {}).watch(function(error, event){
-  //       if(!error){
-  //         // $('#events').append('<li class="list-group-item">' + event.args._name + ' is now for sale</li>');
-  //         console.log("catched event");
-  //         console.log(event);
-  //       }else{
-  //         console.error(error);
-  //       }
-  //       // App.reloadArticles();
-  //     });
-  //  };
 
   /////////////////////////////////////////////////////
   // Owner only functions                            
@@ -133,7 +120,7 @@ class App extends Component {
     if (this.state.web3.utils.isAddress(_input)) {
       await contract.methods.addStoreOwner(_input).send({ from: accounts[0] }).then(function () {
         $('#newStoreOwnerFormText').text("address added as storeOwner.");
-      }).then(()=>{
+      }).then(() => {
         this.reloadStoreOwners();
       });
     } else {
@@ -141,42 +128,60 @@ class App extends Component {
     }
   };
 
-    /** @dev disable storeOwner address from input field. */
-    async changeStatusEnrolledStoreOwner() {
-      const { accounts, contract } = this.state;
-      const _input = $('#disableStoreOwnerAddress').val().trim();
-      if (this.state.web3.utils.isAddress(_input)) {
-        await contract.methods.changeStatusEnrolledStoreOwner(_input).send({ from: accounts[0] }).then(function () {
-          $('#disableStoreOwnerFormText').text("address disabled as storeOwner.");
-        }).then(()=>{
-          this.reloadStoreOwners();
-        });
-      } else {
-        $('#disableStoreOwnerFormText').text("Invalid input.");
-      }
-    };
+  /** @dev disable storeOwner address from input field. */
+  async changeStatusEnrolledStoreOwner() {
+    const { accounts, contract } = this.state;
+    const _input = $('#disableStoreOwnerAddress').val().trim();
+    if (this.state.web3.utils.isAddress(_input)) {
+      await contract.methods.changeStatusEnrolledStoreOwner(_input).send({ from: accounts[0] }).then(function () {
+        $('#disableStoreOwnerFormText').text("address disabled as storeOwner.");
+      }).then(() => {
+        this.reloadStoreOwners();
+      });
+    } else {
+      $('#disableStoreOwnerFormText').text("Invalid input.");
+    }
+  };
 
   async reloadStoreOwners() {
-    const { contract } = this.state; 
+    const { contract } = this.state;
     var _this = this;
-    this.setState({storeOwners: []});
+    this.setState({ storeOwners: [] });
 
     await contract.methods.getNumberOfStoreOwners().call()
-    .then((storeOwnerIds) => { 
-      for(var i = 1; i<= storeOwnerIds; i++){
-        contract.methods.storeOwners(i).call().then(result => {
-          // temp.push({id: result[0], address: result[1], enrolled: result[3].toString()});
-          _this.setState({storeOwners: [...this.state.storeOwners, {id: result[0], address: result[1], enrolled: result[3].toString()}]
-          })
+      .then((storeOwnerIds) => {
+        for (var i = 1; i <= storeOwnerIds; i++) {
+          contract.methods.storeOwners(i).call().then(result => {
+            // temp.push({id: result[0], address: result[1], enrolled: result[3].toString()});
+            _this.setState({
+              storeOwners: [...this.state.storeOwners, { id: result[0], address: result[1], enrolled: result[3].toString() }]
+            })
 
-        });
-      }
-    });
+          });
+        }
+      });
   }
 
   /////////////////////////////////////////////////////
   // StoreOwner only functions                            
   /////////////////////////////////////////////////////
+  /** @dev add article from input fields. */
+  async addArticle() {
+    const { accounts, contract } = this.state;
+    const _name = $('#articleName').val();
+    const _description = $('#articleDescription').val();
+    const _price = Number($('#articlePrice').val());
+
+    if((_name.trim() == '') || (_price == 0)){
+      $('#articleReturn').text("False inputs.");
+      return false;
+    }
+
+    await contract.methods.sellArticle(_name, _description, _price).send({ from: accounts[0] }).then(function () {
+      $('#articleReturn').text("article added.");
+    });
+
+  };
 
   render() {
     if (!this.state.web3) {
@@ -189,7 +194,8 @@ class App extends Component {
           <Row>
             <Col>
               <OwnerOnly isOwner={this.state.userType} onClickAdd={() => this.setAdmin()} onClickCheck={() => this.checkAdmin()} onClickDisable={() => this.disableAdmin()} />
-              <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()} onClickDisable={() => this.changeStatusEnrolledStoreOwner()} storeOwnerArray={this.state.storeOwners}/>
+              <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()} onClickDisable={() => this.changeStatusEnrolledStoreOwner()} storeOwnerArray={this.state.storeOwners} />
+              <StoreOwnerOnly isOwner={this.state.userType} onClickAdd={()=> this.addArticle()}/>
             </Col>
             <Col lg="3">
               <AccountInfoBar userType={this.state.userType} />

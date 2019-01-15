@@ -20,6 +20,7 @@ contract Marketplace is Ownable{
     mapping (address => uint) public storeOwnersIds;
 
     uint256 articleCounter;
+    enum ArticleState { ForSale, Sold, NoSale }
     struct Article {
         uint id;
         string name;
@@ -27,6 +28,7 @@ contract Marketplace is Ownable{
         uint256 price;
         address seller;
         address buyer;
+        ArticleState articleState;
     }
     mapping (uint => Article) public articles;
     mapping (address => uint[]) public articleIds;
@@ -143,7 +145,8 @@ contract Marketplace is Ownable{
             description,
             price,
             msg.sender,
-            address(0)
+            address(0),
+            ArticleState.ForSale
         );
 
         articleIds[msg.sender].push(articleCounter);
