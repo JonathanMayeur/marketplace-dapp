@@ -1,6 +1,7 @@
 pragma solidity ^0.5.0;
 
-import "./Ownable.sol";
+// import "./Ownable.sol";
+import "client/node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 contract Marketplace is Ownable{
 
