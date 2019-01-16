@@ -11,6 +11,7 @@ import EventInfo from "./components/EventInfo.js";
 import OwnerOnly from "./components/OwnerOnly.js";
 import AdminOnly from "./components/AdminOnly.js";
 import StoreOwnerOnly from "./components/StoreOwnerOnly.js";
+import ClientOnly from "./components/ClientOnly.js";
 
 
 
@@ -166,7 +167,8 @@ class App extends Component {
   /////////////////////////////////////////////////////
   // StoreOwner only functions                            
   /////////////////////////////////////////////////////
-  /** @dev add article from input fields. */
+  /** @dev add article from input fields. 
+    */
   async addArticle() {
     const { accounts, contract } = this.state;
     const _name = $('#articleName').val();
@@ -186,7 +188,8 @@ class App extends Component {
     });
   };
 
-  /** @dev get articles from storeOwner and put in react state variable */
+  /** @dev get articles from storeOwner and put in react state variable 
+    */
   async reloadArticles(){
     const { accounts, contract } = this.state;
     var _this = this;
@@ -205,6 +208,8 @@ class App extends Component {
       });
   };
 
+  /** @dev change ArticleState of article
+    */
   async changeArticleState(_id){
     console.log(_id)
     const { accounts, contract } = this.state;
@@ -215,6 +220,11 @@ class App extends Component {
     });
   }
 
+  /////////////////////////////////////////////////////
+  // Client only functions                            
+  /////////////////////////////////////////////////////
+  /** @dev get articles Forsale and place in react state variable
+    */
 
 
 
@@ -232,6 +242,7 @@ class App extends Component {
               <OwnerOnly isOwner={this.state.userType} onClickAdd={() => this.setAdmin()} onClickCheck={() => this.checkAdmin()} onClickDisable={() => this.disableAdmin()} />
               <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()} onClickDisable={() => this.changeStatusEnrolledStoreOwner()} storeOwnerArray={this.state.storeOwners} />
               <StoreOwnerOnly isOwner={this.state.userType} onClickAdd={()=> this.addArticle()} articlesArray={this.state.articles} onClickChange={id => this.changeArticleState(id)}/>
+              <ClientOnly isOwner={this.state.userType} />
             </Col>
           </Row>
         </div>

@@ -1,6 +1,5 @@
 pragma solidity ^0.5.0;
 
-// import "./Ownable.sol";
 import "client/node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 contract Marketplace is Ownable{
@@ -173,5 +172,31 @@ contract Marketplace is Ownable{
             articles[articleId].articleState = ArticleState.ForSale;
         }
         return true;
+    }
+
+    /////////////////////////////////////////////////////
+    // Client only functions
+    ///////////////////////////////////////////////////// 
+    /** @dev get articles for sale
+      */
+    function getArticlesForSale() public view returns(uint[] memory){
+        uint[] memory articleIdsForSale = new uint[](articleCounter);
+
+        uint numberOfArticlesForSale = 0;
+        // iterate over articles
+        for(uint i = 1; i <= articleCounter;  i++) {
+          // keep the ID if the article is still for sale
+            if(articles[i].articleState == ArticleState.ForSale) {
+                articleIdsForSale[numberOfArticlesForSale] = articles[i].id;
+                numberOfArticlesForSale++;
+            }
+        }
+
+        // copy the articleIds array into a smaller forSale array
+        uint[] memory forSale = new uint[](numberOfArticlesForSale);
+        for(uint j = 0; j < numberOfArticlesForSale; j++) {
+            forSale[j] = articleIdsForSale[j];
+        }
+        return forSale;
     }
 }
