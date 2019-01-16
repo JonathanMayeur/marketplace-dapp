@@ -3,16 +3,16 @@ import { Row, Col, FormGroup, Form, FormText, Input, Button, Table } from 'react
 
 let styleP = { borderBottom: '1px solid black', padding: '5px 5px 2px 0px', margin: '10px', textAlign: 'left' };
 let styleF = { margin: '0px 0px 0px 10px' };
-let styleT = { margin: '0px 0px 0px 10px' };
+let styleT = { margin: '10px'};
 let styleBtn = { width: '200px', margin: '10px' };
 
 const AdminOnly = ({ isOwner, onClickAdd, onClickChange, id, articlesArray }) => {
     if (isOwner === "storeOwner") {
         return (
             <div>
-                <h4 style={styleP}>StoreOwner only functions</h4>
                 <Row>
                     <Col xs="10">
+                    <h4 style={styleP}>StoreOwner only functions</h4>
                         <Form style={styleF}>
                             <FormGroup>
                                 <Input type="text" id="articleName" placeholder="Name of new article" />

@@ -6,7 +6,7 @@ const HeaderBar = ({ title, address, userType }) => {
                 <NavbarBrand><b>{title}</b></NavbarBrand>
                 <Nav className="ml-auto" navbar>
                     <NavItem>
-                        {address}, {userType}
+                    {userType}, {address}
                     </NavItem>
                 </Nav>
             </Navbar>;

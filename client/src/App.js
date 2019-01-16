@@ -225,17 +225,13 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <HeaderBar title={"Marketplace-dapp"} address={this.state.accounts[0]} />
+        <HeaderBar title={"Marketplace-dapp"} address={this.state.accounts[0]} userType={this.state.userType}/>
         <div>
           <Row>
             <Col>
               <OwnerOnly isOwner={this.state.userType} onClickAdd={() => this.setAdmin()} onClickCheck={() => this.checkAdmin()} onClickDisable={() => this.disableAdmin()} />
               <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()} onClickDisable={() => this.changeStatusEnrolledStoreOwner()} storeOwnerArray={this.state.storeOwners} />
               <StoreOwnerOnly isOwner={this.state.userType} onClickAdd={()=> this.addArticle()} articlesArray={this.state.articles} onClickChange={id => this.changeArticleState(id)}/>
-            </Col>
-            <Col lg="3">
-              <AccountInfoBar userType={this.state.userType} />
-              <EventInfo />
             </Col>
           </Row>
         </div>
