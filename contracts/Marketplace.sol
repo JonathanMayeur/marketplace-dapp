@@ -82,7 +82,6 @@ contract Marketplace is Ownable{
         return admins[adminAddress];
     }
 
-
     /////////////////////////////////////////////////////
     // Admin only functions
     /////////////////////////////////////////////////////
@@ -93,6 +92,7 @@ contract Marketplace is Ownable{
       */
     function addStoreOwner(address newStoreOwner) public onlyAdmin returns(bool){
         require(!checkStoreOwner(newStoreOwner));
+        // if(checkStoreOwner(newStoreOwner)){revert();} 
         storeOwnersCounter++;
         storeOwners[storeOwnersCounter] = StoreOwner(storeOwnersCounter,newStoreOwner, 0, true);
         storeOwnersIds[newStoreOwner] = storeOwnersCounter;
@@ -159,5 +159,19 @@ contract Marketplace is Ownable{
       * @return uint[]*/
     function getArticleIds() public view onlyStoreOwner returns(uint[] memory){
         return articleIds[msg.sender]; 
+    }
+
+    /** @dev change articleState from article
+      * @param articleId id of article
+      * @return true if succeeded
+      */
+    function changeArticleState(uint256 articleId) public onlyStoreOwner returns(bool){
+        require(articleId <= articleCounter);
+        if(articles[articleId].articleState == ArticleState.ForSale){
+            articles[articleId].articleState = ArticleState.NoSale;
+        } else if(articles[articleId].articleState == ArticleState.NoSale){
+            articles[articleId].articleState = ArticleState.ForSale;
+        }
+        return true;
     }
 }

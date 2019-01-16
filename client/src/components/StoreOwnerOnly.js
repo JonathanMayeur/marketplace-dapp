@@ -6,7 +6,7 @@ let styleF = { margin: '0px 0px 0px 10px' };
 let styleT = { margin: '0px 0px 0px 10px' };
 let styleBtn = { width: '200px', margin: '10px' };
 
-const AdminOnly = ({ isOwner, onClickAdd, onClickDisable, articlesArray }) => {
+const AdminOnly = ({ isOwner, onClickAdd, onClickChange, id, articlesArray }) => {
     if (isOwner === "storeOwner") {
         return (
             <div>
@@ -36,9 +36,10 @@ const AdminOnly = ({ isOwner, onClickAdd, onClickDisable, articlesArray }) => {
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th>Price</th>
+                                <th>Price (ETH)</th>
                                 <th>Buyer</th>
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,6 +50,7 @@ const AdminOnly = ({ isOwner, onClickAdd, onClickDisable, articlesArray }) => {
                                 <td>{p.price}</td>
                                 <td>{p.buyer}</td>
                                 <td>{p.articleState}</td>
+                                <td><Button onClick={_ => onClickChange(p.id)} color="info" size="sm">Change status</Button></td>
                             </tr>)}
                         </tbody>
                     </Table>
