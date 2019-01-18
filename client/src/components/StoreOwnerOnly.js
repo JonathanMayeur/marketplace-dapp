@@ -3,10 +3,10 @@ import { Row, Col, FormGroup, Form, FormText, Input, Button, Table } from 'react
 
 let styleP = { borderBottom: '1px solid black', padding: '5px 5px 2px 0px', margin: '10px', textAlign: 'left' };
 let styleF = { margin: '0px 0px 0px 10px' };
-let styleT = { margin: '10px'};
+let styleT = { margin: '5px'};
 let styleBtn = { width: '200px', margin: '10px' };
 
-const AdminOnly = ({ isOwner, onClickAdd, onClickChange, id, articlesArray }) => {
+const AdminOnly = ({ isOwner, onClickAdd, onClickChange, articlesArray }) => {
     if (isOwner === "storeOwner") {
         return (
             <div>
@@ -29,8 +29,8 @@ const AdminOnly = ({ isOwner, onClickAdd, onClickChange, id, articlesArray }) =>
                     </Col>
                 </Row>
 
-                <Row>
-                    <Table size="sm" id="table" style={styleT}>
+                <Row style={styleT}>
+                    <Table size="sm" id="table" style={styleT} striped>
                         <thead>
                             <tr>
                                 <th>#</th>

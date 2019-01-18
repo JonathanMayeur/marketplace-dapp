@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity 0.5.0;
 
 import "client/node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
@@ -100,14 +100,13 @@ contract Marketplace is Ownable{
     }
 
     /** @dev change enrolled status of a storeOwner address
-      * @param storeOwnerAddress Address of storeOwner
+      * @param id Id of storeOwner
       * @return False if address is no longer storeOwner
       */
-    function changeStatusEnrolledStoreOwner(address storeOwnerAddress) public onlyAdmin returns(bool) {
-        uint _id = storeOwnersIds[storeOwnerAddress];
-        storeOwners[_id].enrolled = !storeOwners[_id].enrolled;
-        emit EditStoreOwner(storeOwnerAddress, "Changed enrolled status storeOwner.");
-        return storeOwners[storeOwnersCounter].enrolled;
+    function changeStatusEnrolledStoreOwner(uint id) public onlyAdmin returns(bool) {
+        storeOwners[id].enrolled = !storeOwners[id].enrolled;
+        emit EditStoreOwner(storeOwners[id].storeOwnerAddress, "Changed enrolled status storeOwner.");
+        return storeOwners[id].enrolled;
     }  
 
     /** @dev check if address is storeOwner
