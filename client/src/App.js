@@ -164,10 +164,10 @@ class App extends Component {
   /** @dev add article from input fields. 
     */
   async addArticle() {
-    const { accounts, contract } = this.state;
+    const { web3, accounts, contract } = this.state;
     const _name = $('#articleName').val();
     const _description = $('#articleDescription').val();
-    const _price = Number($('#articlePrice').val());
+    const _price = web3.utils.toWei(($('#articlePrice').val() || 0), "ether");
     var _this = this;
 
     if((_name.trim() === '') || (_price === 0)){
@@ -185,7 +185,7 @@ class App extends Component {
   /** @dev get articles from storeOwner and put in react state variable 
     */
   async reloadStoreOwnerArticles(){
-    const { accounts, contract } = this.state;
+    const { web3, accounts, contract } = this.state;
     var _this = this;
     const articleStates = ["ForSale", "Sold", "NoSale"];
     this.setState({ articles: [] });
@@ -195,7 +195,7 @@ class App extends Component {
         articleIds.forEach(id => {
           contract.methods.articles(id).call().then(article => {
             _this.setState({
-              articles: [...this.state.articles, {id: article[0], name: article[1].toString(), description: article[2].toString(), price: article[3], buyer: article[5], articleState: articleStates[article[6]]}]
+              articles: [...this.state.articles, {id: article[0], name: article[1].toString(), description: article[2].toString(), price: web3.utils.fromWei(article[3], "ether"), buyer: article[5], articleState: articleStates[article[6]]}]
             });
           });
         });
@@ -219,7 +219,7 @@ class App extends Component {
   /** @dev get articles Forsale and place in react state variable
     */
   async reloadArticles(){
-    const { accounts, contract } = this.state;
+    const { web3, accounts, contract } = this.state;
     var _this = this;
     this.setState({ articles: [] });
 
@@ -228,7 +228,7 @@ class App extends Component {
         articleIds.forEach(id => {
           contract.methods.articles(id).call().then(article => {
             _this.setState({
-              articles: [...this.state.articles, {id: article[0], name: article[1].toString(), description: article[2].toString(), price: article[3]}]
+              articles: [...this.state.articles, {id: article[0], name: article[1].toString(), description: article[2].toString(), price: web3.utils.fromWei(article[3])}]
             });
           });
         });
@@ -237,7 +237,7 @@ class App extends Component {
 
   //* @dev buy article
   async buyArticle(_id){
-    const { accounts, contract } = this.state;
+    const { web3, accounts, contract } = this.state;
     var _this = this;
 
     await contract.methods.articles(_id).call().then(article => {
