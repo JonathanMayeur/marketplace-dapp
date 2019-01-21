@@ -33,7 +33,7 @@ contract("Marketplace", accounts => {
         }
     });
 
-    // Test adminOnly functions. First add adress as admin, then call the fucntions from that account. Testing if it can add an address as storeOwner, and then change the status enrolled of that address. The function checkStoreOwner islo tested. 
+    // Test adminOnly functions. First add address as admin, then call the fucntions from that account. Testing if it can add an address as storeOwner, and then change the status enrolled of that address. The function checkStoreOwner islo tested. 
     it("should add and disable storeOwner addresses", function () {
         return Marketplace.deployed().then(function (instance) {
             MarketplaceInstance = instance;
@@ -51,7 +51,7 @@ contract("Marketplace", accounts => {
         }).then(function (isStoreOwner) {
             assert.isTrue(isStoreOwner, "The address did not check as storeOwner.");
         }).then(function () {
-            MarketplaceInstance.changeStatusEnrolledStoreOwner(accounts[2], { from: accounts[1] });
+            MarketplaceInstance.changeStatusEnrolledStoreOwner(1, { from: accounts[1] });
             return MarketplaceInstance.storeOwners(1);
         }).then(function (storeOwner) {
             assert.isFalse(storeOwner.enrolled, "The address was not disabled as storeOwner");
@@ -74,7 +74,7 @@ contract("Marketplace", accounts => {
     it("should let us sell a first article", function () {
         return Marketplace.deployed().then(function (instance) {
             MarketplaceInstance = instance;
-            MarketplaceInstance.changeStatusEnrolledStoreOwner(accounts[2], { from: accounts[1] });
+            MarketplaceInstance.changeStatusEnrolledStoreOwner(1, { from: accounts[1] });
             return MarketplaceInstance.storeOwners(1);
         }).then(function (storeOwner) {
             assert.isTrue(storeOwner.enrolled, "The address was not set as storeOwner.");
@@ -104,6 +104,26 @@ contract("Marketplace", accounts => {
         catch (err) {
             assert.include(err.message, "revert", "The error message should contain 'revert'");
         }
+    });
+
+
+    // Test if you can buy the first article and check storeOwner.balance.
+    it("should buy the first article", function () {
+        return Marketplace.deployed().then(function (instance) {
+            MarketplaceInstance.buyArticle(1, { from: accounts[3], value: articlePrice1 });
+            return MarketplaceInstance.articles(1);
+        }).then(function (data) {
+            assert.equal(data[0].toNumber(), 1, "article id must be 1");
+            assert.equal(data[1], articleName1, "article name must be " + articleName1);
+            assert.equal(data[2], articleDescription1, "article description must be " + articleDescription1);
+            assert.equal(data[3], articlePrice1, "article price must be " + articlePrice1);
+            assert.equal(data[4], accounts[2], "seller must be " + accounts[2]);
+            assert.equal(data[5], accounts[3], "buyer must be " + accounts[3]);
+        }).then(function () {
+            return MarketplaceInstance.storeOwners(1)
+        }).then(function (storeOwner) {
+            assert.equal(storeOwner.balance, 10, "balance should be + " + articlePrice1);
+        });
     });
 
 

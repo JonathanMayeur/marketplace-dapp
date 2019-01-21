@@ -30,9 +30,6 @@ First ensure you are in a the project directory.
     ```javascript
     // inside the development console.
     test
-
-    // outside the development console..
-    truffle test
     ```
 
 ## User stories

@@ -26,8 +26,8 @@ contract Marketplace is Ownable{
         string name;
         string description;
         uint256 price;
-        address seller;
-        address buyer;
+        address payable seller;
+        address payable buyer;
         ArticleState articleState;
     }
     mapping (uint => Article) public articles;
@@ -104,6 +104,7 @@ contract Marketplace is Ownable{
       * @return False if address is no longer storeOwner
       */
     function changeStatusEnrolledStoreOwner(uint id) public onlyAdmin returns(bool) {
+        require(id > 0 && id <= storeOwnersCounter);
         storeOwners[id].enrolled = !storeOwners[id].enrolled;
         emit EditStoreOwner(storeOwners[id].storeOwnerAddress, "Changed enrolled status storeOwner.");
         return storeOwners[id].enrolled;
@@ -198,4 +199,25 @@ contract Marketplace is Ownable{
         }
         return forSale;
     }
+
+    /** @dev Buy an article
+      */
+        function buyArticle(uint _id) payable public {
+        // we check whether there is an article for sale & article Exists
+        require(articleCounter > 0);
+        require(_id > 0 && _id <= articleCounter);
+
+        Article storage article = articles[_id];
+        require(article.buyer == address(0));
+        require(msg.sender != article.seller);
+
+        // keep buyer's information
+        article.buyer = msg.sender;
+
+        uint storeOwnerId = storeOwnersIds[article.seller];
+        storeOwners[storeOwnerId].balance += msg.value;
+
+
+    }
+
 }
