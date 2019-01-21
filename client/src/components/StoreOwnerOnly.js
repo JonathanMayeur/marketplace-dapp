@@ -4,9 +4,9 @@ import { Row, Col, FormGroup, Form, FormText, Input, Button, Table } from 'react
 let styleP = { borderBottom: '1px solid black', padding: '5px 5px 2px 0px', margin: '10px', textAlign: 'left' };
 let styleF = { margin: '0px 0px 0px 10px' };
 let styleT = { margin: '5px' };
-let styleBtn = { width: '200px', margin: '10px' };
+let styleBtn = { width: '200px' };
 
-const AdminOnly = ({ isOwner, onClickAdd, onClickChange, articlesArray }) => {
+const AdminOnly = ({ isOwner, onClickAdd, onClickChange, articlesArray, balance }) => {
     if (isOwner === "storeOwner") {
         return (
             <div>
@@ -22,11 +22,14 @@ const AdminOnly = ({ isOwner, onClickAdd, onClickChange, articlesArray }) => {
                             </FormGroup>
                             <FormGroup>
                                 <Input type="number" step="1" id="articlePrice" placeholder="article price" />
-                                <FormText id="articleReturn">_</FormText>
                             </FormGroup>
                         </Form>
-                        <Button style={styleBtn} onClick={onClickAdd}>Add Article</Button>
                     </Col>
+                </Row>
+                <Row>
+                    <Col xs="3"><Button style={styleBtn} onClick={onClickAdd}>Add Article</Button></Col>
+                    <Col xs="4"><p>Balance from sales: {balance} ETH</p></Col>
+                    <Col xs="3"><Button style={styleBtn} color="success">Withdraw</Button></Col>
                 </Row>
 
                 <Row style={styleT}>

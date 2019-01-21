@@ -14,7 +14,7 @@ import ClientOnly from "./components/ClientOnly.js";
 
 
 class App extends Component {
-  state = { web3: null, accounts: null, contract: null, network: null, userType: null, storeOwners: [], articles: [] };
+  state = { web3: null, accounts: null, contract: null, network: null, userType: null, storeOwners: [], articles: [], balance: null };
 
   componentDidMount = async () => {
     try {
@@ -63,6 +63,7 @@ class App extends Component {
     } else if (isStoreOwner) {
       this.setState({ userType: "storeOwner" })
       this.reloadStoreOwnerArticles();
+      this.loadBalance();
     } else {
       this.setState({ userType: "client" })
       this.reloadArticles();
@@ -148,11 +149,9 @@ class App extends Component {
       .then((storeOwnerIds) => {
         for (var i = 1; i <= storeOwnerIds; i++) {
           contract.methods.storeOwners(i).call().then(result => {
-            // temp.push({id: result[0], address: result[1], enrolled: result[3].toString()});
             _this.setState({
               storeOwners: [...this.state.storeOwners, { id: result[0], address: result[1], enrolled: result[3].toString() }]
             })
-
           });
         }
       });
@@ -177,7 +176,6 @@ class App extends Component {
     }
 
     await contract.methods.sellArticle(_name, _description, _price).send({ from: accounts[0] }).then(function () {
-      $('#articleReturn').text("article added.");
       _this.reloadStoreOwnerArticles();
     });
   };
@@ -202,14 +200,24 @@ class App extends Component {
       });
   };
 
-  /** @dev change ArticleState of article
-    */
+  /** @dev change ArticleState of article */
   async changeArticleState(_id){
     const { accounts, contract } = this.state;
     var _this = this;
 
     await contract.methods.changeArticleState(_id).send({ from: accounts[0] }).then(()=> {
       _this.reloadStoreOwnerArticles();
+    });
+  }
+
+  /** @dev load balance from storeOwner */
+  async loadBalance(){
+    const { web3, accounts, contract } = this.state;
+
+    await contract.methods.storeOwnersIds(accounts[0]).call().then(id => {
+      contract.methods.storeOwners(id).call().then(storeOwner => {
+        this.setState({balance: web3.utils.fromWei(storeOwner.balance)})
+      });
     });
   }
 
@@ -262,7 +270,7 @@ class App extends Component {
             <Col>
               <OwnerOnly isOwner={this.state.userType} onClickAdd={() => this.setAdmin()} onClickCheck={() => this.checkAdmin()} onClickDisable={() => this.disableAdmin()} />
               <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()} onClickChange={id => this.changeStatusEnrolledStoreOwner(id)} storeOwnerArray={this.state.storeOwners} />
-              <StoreOwnerOnly isOwner={this.state.userType} onClickAdd={()=> this.addArticle()} articlesArray={this.state.articles} onClickChange={id => this.changeArticleState(id)}/>
+              <StoreOwnerOnly isOwner={this.state.userType} onClickAdd={()=> this.addArticle()} articlesArray={this.state.articles} onClickChange={id => this.changeArticleState(id)} balance={this.state.balance}/>
               <ClientOnly isOwner={this.state.userType} articlesArray={this.state.articles} onClickBuy={id => this.buyArticle(id)}/>
             </Col>
           </Row>
