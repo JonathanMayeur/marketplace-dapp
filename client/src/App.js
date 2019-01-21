@@ -236,7 +236,16 @@ class App extends Component {
   };
 
   //* @dev buy article
-  
+  async buyArticle(_id){
+    const { accounts, contract } = this.state;
+    var _this = this;
+
+    await contract.methods.articles(_id).call().then(article => {
+      contract.methods.buyArticle(_id).send({from: accounts[0], value: article.price}).then(() => {
+        _this.reloadArticles();
+      })
+    })
+  };
 
 
 
@@ -254,7 +263,7 @@ class App extends Component {
               <OwnerOnly isOwner={this.state.userType} onClickAdd={() => this.setAdmin()} onClickCheck={() => this.checkAdmin()} onClickDisable={() => this.disableAdmin()} />
               <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()} onClickChange={id => this.changeStatusEnrolledStoreOwner(id)} storeOwnerArray={this.state.storeOwners} />
               <StoreOwnerOnly isOwner={this.state.userType} onClickAdd={()=> this.addArticle()} articlesArray={this.state.articles} onClickChange={id => this.changeArticleState(id)}/>
-              <ClientOnly isOwner={this.state.userType} articlesArray={this.state.articles} />
+              <ClientOnly isOwner={this.state.userType} articlesArray={this.state.articles} onClickBuy={id => this.buyArticle(id)}/>
             </Col>
           </Row>
         </div>

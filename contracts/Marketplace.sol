@@ -207,6 +207,7 @@ contract Marketplace is Ownable{
         require(msg.sender != article.seller);
 
         article.buyer = msg.sender;
+        article.articleState = ArticleState.Sold;
 
         uint storeOwnerId = storeOwnersIds[article.seller];
         storeOwners[storeOwnerId].balance += msg.value;

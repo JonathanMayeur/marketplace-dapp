@@ -3,7 +3,7 @@ import { Row, Col, FormGroup, Form, FormText, Input, Button, Table } from 'react
 
 let styleP = { borderBottom: '1px solid black', padding: '5px 5px 2px 0px', margin: '10px', textAlign: 'left' };
 let styleF = { margin: '0px 0px 0px 10px' };
-let styleT = { margin: '5px'};
+let styleT = { margin: '5px' };
 let styleBtn = { width: '200px', margin: '10px' };
 
 const AdminOnly = ({ isOwner, onClickAdd, onClickChange, articlesArray }) => {
@@ -12,7 +12,7 @@ const AdminOnly = ({ isOwner, onClickAdd, onClickChange, articlesArray }) => {
             <div>
                 <Row>
                     <Col xs="10">
-                    <h4 style={styleP}>StoreOwner only functions</h4>
+                        <h4 style={styleP}>StoreOwner only functions</h4>
                         <Form style={styleF}>
                             <FormGroup>
                                 <Input type="text" id="articleName" placeholder="Name of new article" />
@@ -50,7 +50,10 @@ const AdminOnly = ({ isOwner, onClickAdd, onClickChange, articlesArray }) => {
                                 <td>{p.price}</td>
                                 <td>{p.buyer}</td>
                                 <td>{p.articleState}</td>
-                                <td><Button onClick={_ => onClickChange(p.id)} color="info" size="sm">Change status</Button></td>
+                                {(p.articleState != "Sold") ?
+                                    <td><Button onClick={_ => onClickChange(p.id)} color="info" size="sm">Change status</Button></td> :
+                                    <td>-</td>
+                                }
                             </tr>)}
                         </tbody>
                     </Table>
