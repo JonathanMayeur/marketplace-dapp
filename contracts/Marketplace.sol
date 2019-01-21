@@ -36,14 +36,9 @@ contract Marketplace is Ownable{
     //
     // Modifiers
     // 
-    modifier onlyAdmin(){
-        require(admins[msg.sender]);
-        _;
-    }
-    modifier onlyStoreOwner(){
-        require(checkStoreOwner(msg.sender));
-        _;
-    }
+    modifier onlyAdmin(){require(admins[msg.sender]); _;}
+    modifier onlyStoreOwner(){require(checkStoreOwner(msg.sender)); _;}
+    modifier paidEnough(uint _price){require(msg.value >= _price); _;}
 
     //
     // Events
@@ -202,7 +197,7 @@ contract Marketplace is Ownable{
 
     /** @dev Buy an article
       */
-        function buyArticle(uint _id) payable public {
+        function buyArticle(uint _id) public payable paidEnough(articles[_id].price) {
         // we check whether there is an article for sale & article Exists
         require(articleCounter > 0);
         require(_id > 0 && _id <= articleCounter);
@@ -211,13 +206,10 @@ contract Marketplace is Ownable{
         require(article.buyer == address(0));
         require(msg.sender != article.seller);
 
-        // keep buyer's information
         article.buyer = msg.sender;
 
         uint storeOwnerId = storeOwnersIds[article.seller];
         storeOwners[storeOwnerId].balance += msg.value;
-
-
     }
 
 }

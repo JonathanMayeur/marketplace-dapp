@@ -235,6 +235,9 @@ class App extends Component {
       });
   };
 
+  //* @dev buy article
+  
+
 
 
 
