@@ -169,6 +169,18 @@ contract Marketplace is Ownable{
         return true;
     }
 
+    /** @dev Withdraw ammount stored in balance of the storeOwner
+        @return true if succeeded
+      */
+    function withdraw(address storeOwnerAddress) public onlyStoreOwner returns(bool){
+        require(storeOwnerAddress == msg.sender);
+        uint id = storeOwnersIds[storeOwnerAddress];
+
+        storeOwners[id].balance -= storeOwners[id].balance;
+
+        return true;
+    }
+
     /////////////////////////////////////////////////////
     // Client only functions
     ///////////////////////////////////////////////////// 

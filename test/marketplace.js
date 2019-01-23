@@ -79,13 +79,13 @@ contract("Marketplace", accounts => {
         }).then(function (storeOwner) {
             assert.isTrue(storeOwner.enrolled, "The address was not set as storeOwner.");
         }).then(function () {
-            MarketplaceInstance.sellArticle(articleName1, articleDescription1, articlePrice1, { from: accounts[2] });
+            MarketplaceInstance.sellArticle(articleName1, articleDescription1, web3.utils.toWei(articlePrice1.toString(), "ether"), { from: accounts[2] });
             return MarketplaceInstance.articles(1);
         }).then(function (data) {
             assert.equal(data[0].toNumber(), 1, "article id must be 1");
             assert.equal(data[1], articleName1, "article name must be " + articleName1);
             assert.equal(data[2], articleDescription1, "article description must be " + articleDescription1);
-            assert.equal(data[3], articlePrice1, "article price must be " + articlePrice1);
+            assert.equal(data[3].toString(), web3.utils.toWei(articlePrice1.toString(), "ether"), "article price must be " + web3.utils.toWei(articlePrice1.toString(), "ether"));
             assert.equal(data[4], accounts[2], "seller must be " + accounts[2]);
             assert.equal(data[5], 0x0, "buyer must be empty");
         }).then(function () {
@@ -110,21 +110,29 @@ contract("Marketplace", accounts => {
     // Test if you can buy the first article and check storeOwner.balance.
     it("should buy the first article", function () {
         return Marketplace.deployed().then(function (instance) {
-            MarketplaceInstance.buyArticle(1, { from: accounts[3], value: articlePrice1 });
+            MarketplaceInstance.buyArticle(1, { from: accounts[3], value: web3.utils.toWei(articlePrice1.toString(), "ether") });
             return MarketplaceInstance.articles(1);
         }).then(function (data) {
             assert.equal(data[0].toNumber(), 1, "article id must be 1");
             assert.equal(data[1], articleName1, "article name must be " + articleName1);
             assert.equal(data[2], articleDescription1, "article description must be " + articleDescription1);
-            assert.equal(data[3], articlePrice1, "article price must be " + articlePrice1);
+            assert.equal(data[3].toString(), web3.utils.toWei(articlePrice1.toString(), "ether"), "article price must be " + web3.utils.toWei(articlePrice1.toString(), "ether"));
             assert.equal(data[4], accounts[2], "seller must be " + accounts[2]);
             assert.equal(data[5], accounts[3], "buyer must be " + accounts[3]);
         }).then(function () {
             return MarketplaceInstance.storeOwners(1)
         }).then(function (storeOwner) {
-            assert.equal(storeOwner.balance, 10, "balance should be + " + articlePrice1);
+            assert.equal(storeOwner.balance, web3.utils.toWei(articlePrice1.toString(), "ether"), "balance should be + " + web3.utils.toWei(articlePrice1.toString(), "ether"));
         });
     });
 
-
+    // Test if you can withdraw storeOwnerBalance
+    it("should withdraw it's balance", function () {
+        return Marketplace.deployed().then(function (instance) {
+            MarketplaceInstance.withdraw(accounts[2], { from: accounts[2] });
+            return MarketplaceInstance.storeOwners(1);
+        }).then(function (data) {
+            assert.equal(data[2].toNumber(), 0, "balance must be empty"); 
+        });
+    });
 });
