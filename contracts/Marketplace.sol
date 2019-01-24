@@ -10,7 +10,7 @@ contract Marketplace is Ownable, CircuitBreaker{
     //
     mapping (address => bool) public admins;
 
-    uint256 storeOwnersCounter;
+    uint256 private storeOwnersCounter;
     struct StoreOwner {
         uint id;
         address storeOwnerAddress;
@@ -20,7 +20,7 @@ contract Marketplace is Ownable, CircuitBreaker{
     mapping (uint => StoreOwner) public storeOwners;
     mapping (address => uint) public storeOwnersIds;
 
-    uint256 articleCounter;
+    uint256 private articleCounter;
     enum ArticleState { ForSale, Sold, NoSale }
     struct Article {
         uint id;
@@ -75,6 +75,10 @@ contract Marketplace is Ownable, CircuitBreaker{
         admins[adminAddress] = false;
         emit EditAdmin(adminAddress, "Disabled admin");
         return admins[adminAddress];
+    }
+
+    function kill() public onlyOwner{
+        selfdestruct(msg.sender);
     }
 
     /////////////////////////////////////////////////////
