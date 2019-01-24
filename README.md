@@ -1,5 +1,5 @@
 # Marketplace-dapp
-Final project ConsenSys course 2018. [react-truffle-box](https://github.com/truffle-box/react-box) was used as a starter template. 
+Final project ConsenSys course 2018. [react-truffle-box](https://github.com/truffle-box/react-box) was used as a starter template. The contract itself has been developed using the Truffle development framework v5.0.0, and Solidity compiler v0.5.0.
 
 ## What does the project do?
 This project is an online marketplace that operates on the blockchain. The marketplace is managed by a group of admins, that can manage store owners. Store owners can put articles for sale and manage their articles. Clients can visit the marketplace and purchase these articles for sale using cryptocurrency.
@@ -9,25 +9,25 @@ This project is an online marketplace that operates on the blockchain. The marke
 First ensure you are in a the project directory.
 
 1. Start your locally running test blockchain.
-    ```javascript
-    ganache-cli
+    ```
+    $ ganache-cli
     ```
 
 2. Compile and migrate the smart contracts to the test blockchain on port 8545.
-    ```javascript
-    truffle compile
-    truffle migrate
+    ```
+    $ truffle compile
+    $ truffle migrate
     ```
 
 3. In the `client` directory, we run the React app.
-    ```javascript
-    npm run start
+    ```
+    $ npm run start
     ```
 Connect MetaMask to your private blockchain and use it to sign transactions.
 
 4. To run tests against your smart contracts.
-    ```javascript
-    truffle test
+    ```
+    $ truffle test
     ```
 
 ## User stories
@@ -42,4 +42,5 @@ A storeOwner opens the web app. The storeOwner can add an article for sale. Disa
 
 4. **Client**
 A user not identified as Owner, Admin or StoreOwner is a client. The client can see all the articles for sale and buy an article.
+
 
