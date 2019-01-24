@@ -1,35 +1,33 @@
 # Marketplace-dapp
 Final project ConsenSys course 2018. [react-truffle-box](https://github.com/truffle-box/react-box) was used as a starter template. 
 
-## What does the project do
+## What does the project do?
 This project is an online marketplace that operates on the blockchain. The marketplace is managed by a group of admins, that can manage store owners. Store owners can put articles for sale and manage their articles. Clients can visit the marketplace and purchase these articles for sale using cryptocurrency.
 
-## Installation
+## How to set it up
 
 First ensure you are in a the project directory.
 
-1. Run the development console.
+1. Start your locally running test blockchain.
     ```javascript
-    truffle develop
+    ganache-cli
     ```
 
-2. Compile and migrate the smart contracts. Run these commands in the development console.
+2. Compile and migrate the smart contracts to the test blockchain on port 8545.
     ```javascript
-    compile
-    migrate
+    truffle compile
+    truffle migrate
     ```
 
-3. In the `client` directory, we run the React app. 
+3. In the `client` directory, we run the React app.
     ```javascript
-    // in another terminal (i.e. not in the truffle develop prompt)
-    cd client
     npm run start
     ```
+Connect MetaMask to your private blockchain and use it to sign transactions.
 
-4. Truffle can run tests against your smart contracts.
+4. To run tests against your smart contracts.
     ```javascript
-    // inside the development console.
-    test
+    truffle test
     ```
 
 ## User stories
@@ -40,6 +38,8 @@ The Owner of the contract opens the web app. The web app reads the address and i
 An admin opens the web app. The web app identifies that the user is an admin. This by reading the address and showing admin only functions. These functions include adding and disabling addresses as storeOwners. All the addresses that have or are identified as storeOwner are shown.
 
 3. **StoreOwner**
+A storeOwner opens the web app. The storeOwner can add an article for sale. Disable one of it's article for sale and see the balance made from sales. It can withdraw that balance into it's account. 
 
 4. **Client**
+A user not identified as Owner, Admin or StoreOwner is a client. The client can see all the articles for sale and buy an article.
 

@@ -1,8 +1,9 @@
 pragma solidity 0.5.0;
 
 import "client/node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
+import "./CircuitBreaker.sol";
 
-contract Marketplace is Ownable{
+contract Marketplace is Ownable, CircuitBreaker{
 
     //
     // State variables
@@ -84,7 +85,7 @@ contract Marketplace is Ownable{
       * @param newStoreOwner Address of new storeOwner.
       * @return True if address is a storeOwner.
       */
-    function addStoreOwner(address newStoreOwner) public onlyAdmin returns(bool){
+    function addStoreOwner(address newStoreOwner) public onlyAdmin stopIfEmergency returns(bool){
         require(!checkStoreOwner(newStoreOwner));
         // if(checkStoreOwner(newStoreOwner)){revert();} 
         storeOwnersCounter++;
@@ -98,7 +99,7 @@ contract Marketplace is Ownable{
       * @param id Id of storeOwner
       * @return False if address is no longer storeOwner
       */
-    function changeStatusEnrolledStoreOwner(uint id) public onlyAdmin returns(bool) {
+    function changeStatusEnrolledStoreOwner(uint id) public onlyAdmin stopIfEmergency returns(bool) {
         require(id > 0 && id <= storeOwnersCounter);
         storeOwners[id].enrolled = !storeOwners[id].enrolled;
         emit EditStoreOwner(storeOwners[id].storeOwnerAddress, "Changed enrolled status storeOwner.");
@@ -130,7 +131,7 @@ contract Marketplace is Ownable{
       * @param description Description of article
       * @param price Price of article
       */   
-    function sellArticle(string memory name, string memory description, uint256 price) public onlyStoreOwner {
+    function sellArticle(string memory name, string memory description, uint256 price) public onlyStoreOwner stopIfEmergency {
         //check inputs!!
         articleCounter++;
 
@@ -159,7 +160,7 @@ contract Marketplace is Ownable{
       * @param articleId id of article
       * @return true if succeeded
       */
-    function changeArticleState(uint256 articleId) public onlyStoreOwner returns(bool){
+    function changeArticleState(uint256 articleId) public onlyStoreOwner stopIfEmergency returns(bool){
         require(articleId <= articleCounter);
         if(articles[articleId].articleState == ArticleState.ForSale){
             articles[articleId].articleState = ArticleState.NoSale;
@@ -172,7 +173,7 @@ contract Marketplace is Ownable{
     /** @dev Withdraw ammount stored in balance of the storeOwner
         @return true if succeeded
       */
-    function withdraw(address storeOwnerAddress) public onlyStoreOwner returns(bool){
+    function withdraw(address storeOwnerAddress) public onlyStoreOwner stopIfEmergency returns(bool){
         require(storeOwnerAddress == msg.sender);
 
         uint id = storeOwnersIds[storeOwnerAddress];
@@ -214,7 +215,7 @@ contract Marketplace is Ownable{
 
     /** @dev Buy an article
       */
-        function buyArticle(uint _id) public payable paidEnough(articles[_id].price) {
+        function buyArticle(uint _id) public payable paidEnough(articles[_id].price) stopIfEmergency{
         // we check whether there is an article for sale & article Exists
         require(articleCounter > 0);
         require(_id > 0 && _id <= articleCounter);
