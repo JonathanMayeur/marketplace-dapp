@@ -221,6 +221,15 @@ class App extends Component {
     });
   }
 
+  /** @dev withdraw the StoreOwner balance */
+  async withdrawBalance(){
+    const { accounts, contract } = this.state;
+
+    await contract.methods.withdraw(accounts[0]).send({from: accounts[0]}).then(() => {
+      this.loadBalance();
+    });
+  }
+
   /////////////////////////////////////////////////////
   // Client only functions                            
   /////////////////////////////////////////////////////
@@ -270,7 +279,7 @@ class App extends Component {
             <Col>
               <OwnerOnly isOwner={this.state.userType} onClickAdd={() => this.setAdmin()} onClickCheck={() => this.checkAdmin()} onClickDisable={() => this.disableAdmin()} />
               <AdminOnly isOwner={this.state.userType} onClickAdd={() => this.setStoreOwner()} onClickChange={id => this.changeStatusEnrolledStoreOwner(id)} storeOwnerArray={this.state.storeOwners} />
-              <StoreOwnerOnly isOwner={this.state.userType} onClickAdd={()=> this.addArticle()} articlesArray={this.state.articles} onClickChange={id => this.changeArticleState(id)} balance={this.state.balance}/>
+              <StoreOwnerOnly isOwner={this.state.userType} onClickAdd={()=> this.addArticle()} articlesArray={this.state.articles} onClickChange={id => this.changeArticleState(id)} balance={this.state.balance} onClickWithdraw={() => this.withdrawBalance()}/>
               <ClientOnly isOwner={this.state.userType} articlesArray={this.state.articles} onClickBuy={id => this.buyArticle(id)}/>
             </Col>
           </Row>

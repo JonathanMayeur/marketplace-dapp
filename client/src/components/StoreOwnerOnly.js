@@ -6,7 +6,7 @@ let styleF = { margin: '0px 0px 0px 10px' };
 let styleT = { margin: '5px' };
 let styleBtn = { width: '200px' };
 
-const AdminOnly = ({ isOwner, onClickAdd, onClickChange, articlesArray, balance }) => {
+const AdminOnly = ({ isOwner, onClickAdd, onClickChange, articlesArray, balance, onClickWithdraw }) => {
     if (isOwner === "storeOwner") {
         return (
             <div>
@@ -29,7 +29,7 @@ const AdminOnly = ({ isOwner, onClickAdd, onClickChange, articlesArray, balance 
                 <Row>
                     <Col xs="3"><Button style={styleBtn} onClick={onClickAdd}>Add Article</Button></Col>
                     <Col xs="4"><p>Balance from sales: {balance} ETH</p></Col>
-                    <Col xs="3"><Button style={styleBtn} color="success">Withdraw</Button></Col>
+                    <Col xs="3"><Button style={styleBtn} color="success" onClick={onClickWithdraw}>Withdraw</Button></Col>
                 </Row>
 
                 <Row style={styleT}>

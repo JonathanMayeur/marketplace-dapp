@@ -126,13 +126,17 @@ contract("Marketplace", accounts => {
         });
     });
 
-    // Test if you can withdraw storeOwnerBalance
+    // Test if you can withdraw storeOwnerBalance and transfer storeOwnerBalance to msg.sender
     it("should withdraw it's balance", function () {
         return Marketplace.deployed().then(function (instance) {
             MarketplaceInstance.withdraw(accounts[2], { from: accounts[2] });
             return MarketplaceInstance.storeOwners(1);
         }).then(function (data) {
-            assert.equal(data[2].toNumber(), 0, "balance must be empty"); 
-        });
+            assert.equal(data[2].toNumber(), 0, "balance must be empty");
+            return web3.eth.getBalance(accounts[2]) 
+        }).then((balance) => {
+            let expectedBalance = articlePrice1 + Number(balance);
+            assert.equal(balance, expectedBalance, "Balance incorrect. Should be " + expectedBalance);
+        })
     });
 });

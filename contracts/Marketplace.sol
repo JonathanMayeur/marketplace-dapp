@@ -174,9 +174,14 @@ contract Marketplace is Ownable{
       */
     function withdraw(address storeOwnerAddress) public onlyStoreOwner returns(bool){
         require(storeOwnerAddress == msg.sender);
-        uint id = storeOwnersIds[storeOwnerAddress];
 
-        storeOwners[id].balance -= storeOwners[id].balance;
+        uint id = storeOwnersIds[storeOwnerAddress];
+        uint amount = storeOwners[id].balance;
+
+        require(amount != 0);
+
+        storeOwners[id].balance -= amount;
+        msg.sender.transfer(amount);
 
         return true;
     }
