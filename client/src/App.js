@@ -242,13 +242,15 @@ class App extends Component {
 
     await contract.methods.getArticlesForSale().call({from: accounts[0]})
       .then((articleIds) => {
-        articleIds.forEach(id => {
-          contract.methods.articles(id).call().then(article => {
-            _this.setState({
-              articles: [...this.state.articles, {id: article[0], name: article[1].toString(), description: article[2].toString(), price: web3.utils.fromWei(article[3])}]
+        if (articleIds != null) {
+          articleIds.forEach(id => {
+            contract.methods.articles(id).call().then(article => {
+              _this.setState({
+                articles: [...this.state.articles, {id: article[0], name: article[1].toString(), description: article[2].toString(), price: web3.utils.fromWei(article[3])}]
+              });
             });
           });
-        });
+        }
       });
   };
 
