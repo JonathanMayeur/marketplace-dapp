@@ -12,20 +12,24 @@ First ensure you are in a the project directory.
     ```
     $ ganache-cli
     ```
+2. In the `client` directory, install dependencies. (i.a. openzeppelin-solidity)
+    ```
+    $ npm install
+    ```
 
-2. Compile and migrate the smart contracts to the test blockchain on port 8545.
+3. Compile and migrate the smart contracts to the test blockchain on port 8545. Run these commands in the `marketplace-dapp` directory.
     ```
     $ truffle compile
     $ truffle migrate
     ```
 
-3. In the `client` directory, we run the React app.
+4. In the `client` directory, we run the React app.
     ```
     $ npm run start
     ```
 Connect MetaMask to your private blockchain and use it to sign transactions.
 
-4. To run tests against your smart contracts.
+5. To run tests against your smart contracts.
     ```
     $ truffle test
     ```
@@ -41,6 +45,6 @@ An admin opens the web app. The web app identifies that the user is an admin. Th
 A storeOwner opens the web app. The storeOwner can add an article for sale. Disable one of it's article for sale and see the balance made from sales. It can withdraw that balance into it's account. 
 
 4. **Client**
-A user not identified as Owner, Admin or StoreOwner is a client. The client can see all the articles for sale and buy an article.
+A user not identified as Owner, Admin or StoreOwner is a client. The client can see all the articles for sale and purchase an article.
 
 

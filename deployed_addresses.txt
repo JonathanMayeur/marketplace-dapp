@@ -1,0 +1,25 @@
+Contract deployed to the rinkeby testnet. 
+
+Still working on verifying sourcecode on etherscan.
+
+2_deploy_contracts.js
+=====================
+
+   Deploying 'Marketplace'
+   -----------------------
+   > transaction hash:    0xda8f433b8a71e92c14d8aff137d5ced344848712d128b0585a9ad532ac4a2a16
+   > Blocks: 1            Seconds: 12
+   > contract address:    0x5ab69393C75Bf3ddeb52691E8E935439b0cf7898
+   > account:             0x8B9B6cfb5689d738806396a4B87F64cBDDEcaA3c
+   > balance:             9.91895688
+   > gas used:            2457452
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.04914904 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.04914904 ETH
+

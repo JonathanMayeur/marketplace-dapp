@@ -13,7 +13,7 @@ The pattern adds an option to disable critical contract functionality in case of
 ```
 
 2. **Contract self destruction**
-Used to terminate the contract. Removing it forever from the blockchain.
+Used to terminate the contract. Removing the contract forever from the blockchain.
 ```Solidity
     function kill() public onlyOwner{
         selfdestruct(msg.sender);
@@ -42,22 +42,6 @@ This restricts who can make modifications to the contract’s state or call the 
 4. **Withdrawal pattern**
 Isolate each external call into its own transaction that can be initiated by the recipient of the call. This is used in this project for payments. StoreOwners withdraw their funds rather than haveing funds pushed to them automatically.
 ```Solidity
-    function buyArticle(uint _id) public payable paidEnough(articles[_id].price) stopIfEmergency{
-        // we check whether there is an article for sale & article Exists
-        require(articleCounter > 0);
-        require(_id > 0 && _id <= articleCounter);
-
-        Article storage article = articles[_id];
-        require(article.buyer == address(0));
-        require(msg.sender != article.seller);
-
-        article.buyer = msg.sender;
-        article.articleState = ArticleState.Sold;
-
-        uint storeOwnerId = storeOwnersIds[article.seller];
-        storeOwners[storeOwnerId].balance += msg.value;
-    }
-
     function withdraw(address storeOwnerAddress) public onlyStoreOwner stopIfEmergency returns(bool){
         require(storeOwnerAddress == msg.sender);
 

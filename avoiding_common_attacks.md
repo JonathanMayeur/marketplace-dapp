@@ -32,8 +32,6 @@ Ensure the input parameters are as expected.
     require(msg.sender != article.seller);
 ```
 
-
-
 4. **Transaction protocols**
 Used msg.sender as opposed to tx.origin for value transfers.
 ```Solidity
@@ -41,7 +39,7 @@ Used msg.sender as opposed to tx.origin for value transfers.
 ```
 
 5. **Pull over push payment**
-Isolate each external call into its own transaction that can be initiated by the recipient of the call. This is used in this project for payments. StoreOwners withdraw their funds rather than haveing funds pushed to them automatically.
+Isolate each external call into its own transaction that can be initiated by the recipient of the call. This is used in this project for payments. StoreOwners withdraw their funds rather than having funds pushed to them automatically.
 
 ```Solidity
     function withdraw(address storeOwnerAddress) public onlyStoreOwner stopIfEmergency returns(bool){
