@@ -1,25 +1,542 @@
 Contract deployed to the rinkeby testnet. 
+Interact with contract on https://www.myetherwallet.com/#contracts
 
-Still working on verifying sourcecode on etherscan.
+//////////////////////////
+// Deploying 'Marketplace'
+//////////////////////////
 
-2_deploy_contracts.js
-=====================
-
-   Deploying 'Marketplace'
-   -----------------------
-   > transaction hash:    0xda8f433b8a71e92c14d8aff137d5ced344848712d128b0585a9ad532ac4a2a16
-   > Blocks: 1            Seconds: 12
-   > contract address:    0x5ab69393C75Bf3ddeb52691E8E935439b0cf7898
-   > account:             0x8B9B6cfb5689d738806396a4B87F64cBDDEcaA3c
-   > balance:             9.91895688
-   > gas used:            2457452
-   > gas price:           20 gwei
-   > value sent:          0 ETH
-   > total cost:          0.04914904 ETH
+> transaction hash:    0xda8f433b8a71e92c14d8aff137d5ced344848712d128b0585a9ad532ac4a2a16
+> Blocks: 1            Seconds: 12
+> contract address:    0x5ab69393C75Bf3ddeb52691E8E935439b0cf7898
+> gas used:            2457452
+> gas price:           20 gwei
+-------------------------------------
+> Total cost:          0.04914904 ETH
 
 
-   > Saving migration to chain.
-   > Saving artifacts
-   -------------------------------------
-   > Total cost:          0.04914904 ETH
+//////////////////////////
+// Contract ABI:
+//////////////////////////
 
+[
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "buyArticle",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getNumberOfStoreOwners",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "toggle_active",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "kill",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "admins",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "storeOwners",
+		"outputs": [
+			{
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"name": "storeOwnerAddress",
+				"type": "address"
+			},
+			{
+				"name": "balance",
+				"type": "uint256"
+			},
+			{
+				"name": "enrolled",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "storeOwnerAddress",
+				"type": "address"
+			}
+		],
+		"name": "withdraw",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "articleId",
+				"type": "uint256"
+			}
+		],
+		"name": "changeArticleState",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "articleIds",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "newAdmin",
+				"type": "address"
+			}
+		],
+		"name": "addAdmin",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "adminAddress",
+				"type": "address"
+			}
+		],
+		"name": "disableAdmin",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getArticlesForSale",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "isOwner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "storeOwnersIds",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "newStoreOwner",
+				"type": "address"
+			}
+		],
+		"name": "addStoreOwner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "storeOwnerAddress",
+				"type": "address"
+			}
+		],
+		"name": "checkStoreOwner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "description",
+				"type": "string"
+			},
+			{
+				"name": "price",
+				"type": "uint256"
+			}
+		],
+		"name": "sellArticle",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "changeStatusEnrolledStoreOwner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "articles",
+		"outputs": [
+			{
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "description",
+				"type": "string"
+			},
+			{
+				"name": "price",
+				"type": "uint256"
+			},
+			{
+				"name": "seller",
+				"type": "address"
+			},
+			{
+				"name": "buyer",
+				"type": "address"
+			},
+			{
+				"name": "articleState",
+				"type": "uint8"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getArticleIds",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_admin",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_action",
+				"type": "string"
+			}
+		],
+		"name": "EditAdmin",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_storeOwner",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_action",
+				"type": "string"
+			}
+		],
+		"name": "EditStoreOwner",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"name": "_seller",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_price",
+				"type": "uint256"
+			}
+		],
+		"name": "LogSellArticle",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"name": "_buyer",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_price",
+				"type": "uint256"
+			}
+		],
+		"name": "LogBuyArticle",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	}
+]
