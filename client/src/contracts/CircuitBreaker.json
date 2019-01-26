@@ -79,24 +79,24 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405260008060146101000a81548160ff021916908315150217905550336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16600073ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a361044d806100e96000396000f3fe60806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680633afd1b6714610072578063715018a6146100895780638da5cb5b146100a05780638f32d59b146100f7578063f2fde38b14610126575b600080fd5b34801561007e57600080fd5b50610087610177565b005b34801561009557600080fd5b5061009e6101b6565b005b3480156100ac57600080fd5b506100b5610288565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561010357600080fd5b5061010c6102b1565b604051808215151515815260200191505060405180910390f35b34801561013257600080fd5b506101756004803603602081101561014957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610308565b005b61017f6102b1565b151561018a57600080fd5b600060149054906101000a900460ff1615600060146101000a81548160ff021916908315150217905550565b6101be6102b1565b15156101c957600080fd5b600073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a360008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614905090565b6103106102b1565b151561031b57600080fd5b61032481610327565b50565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561036357600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505056fea165627a7a72305820809c5207684ce5c16bb897245af191cea475409915f1199f911abe15e7ab3dc70029",
-  "deployedBytecode": "0x60806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680633afd1b6714610072578063715018a6146100895780638da5cb5b146100a05780638f32d59b146100f7578063f2fde38b14610126575b600080fd5b34801561007e57600080fd5b50610087610177565b005b34801561009557600080fd5b5061009e6101b6565b005b3480156100ac57600080fd5b506100b5610288565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561010357600080fd5b5061010c6102b1565b604051808215151515815260200191505060405180910390f35b34801561013257600080fd5b506101756004803603602081101561014957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610308565b005b61017f6102b1565b151561018a57600080fd5b600060149054906101000a900460ff1615600060146101000a81548160ff021916908315150217905550565b6101be6102b1565b15156101c957600080fd5b600073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a360008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614905090565b6103106102b1565b151561031b57600080fd5b61032481610327565b50565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561036357600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505056fea165627a7a72305820809c5207684ce5c16bb897245af191cea475409915f1199f911abe15e7ab3dc70029",
-  "sourceMap": "227:213:2:-;;;291:5;268:28;;;;;;;;;;;;;;;;;;;;524:10:5;515:6;;:19;;;;;;;;;;;;;;;;;;582:6;;;;;;;;;;;549:40;;578:1;549:40;;;;;;;;;;;;227:213:2;;;;;;",
-  "deployedSourceMap": "227:213:2:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;303:77;;8:9:-1;5:2;;;30:1;27;20:12;5:2;303:77:2;;;;;;1347:137:5;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1347:137:5;;;;;;659:77;;8:9:-1;5:2;;;30:1;27;20:12;5:2;659:77:5;;;;;;;;;;;;;;;;;;;;;;;;;;;979:90;;8:9:-1;5:2;;;30:1;27;20:12;5:2;979:90:5;;;;;;;;;;;;;;;;;;;;;;;;;;;1655:107;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1655:107:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1655:107:5;;;;;;;;;;;;;;;;;;;;;;303:77:2;863:9:5;:7;:9::i;:::-;855:18;;;;;;;;366:7:2;;;;;;;;;;;365:8;355:7;;:18;;;;;;;;;;;;;;;;;;303:77::o;1347:137:5:-;863:9;:7;:9::i;:::-;855:18;;;;;;;;1445:1;1408:40;;1429:6;;;;;;;;;;;1408:40;;;;;;;;;;;;1475:1;1458:6;;:19;;;;;;;;;;;;;;;;;;1347:137::o;659:77::-;697:7;723:6;;;;;;;;;;;716:13;;659:77;:::o;979:90::-;1019:4;1056:6;;;;;;;;;;;1042:20;;:10;:20;;;1035:27;;979:90;:::o;1655:107::-;863:9;:7;:9::i;:::-;855:18;;;;;;;;1727:28;1746:8;1727:18;:28::i;:::-;1655:107;:::o;1906:183::-;1999:1;1979:22;;:8;:22;;;;1971:31;;;;;;;;2046:8;2017:38;;2038:6;;;;;;;;;;;2017:38;;;;;;;;;;;;2074:8;2065:6;;:17;;;;;;;;;;;;;;;;;;1906:183;:::o",
+  "bytecode": "0x608060405260008060146101000a81548160ff021916908315150217905550336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16600073ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a361044d806100e96000396000f3fe60806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680633afd1b6714610072578063715018a6146100895780638da5cb5b146100a05780638f32d59b146100f7578063f2fde38b14610126575b600080fd5b34801561007e57600080fd5b50610087610177565b005b34801561009557600080fd5b5061009e6101b6565b005b3480156100ac57600080fd5b506100b5610288565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561010357600080fd5b5061010c6102b1565b604051808215151515815260200191505060405180910390f35b34801561013257600080fd5b506101756004803603602081101561014957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610308565b005b61017f6102b1565b151561018a57600080fd5b600060149054906101000a900460ff1615600060146101000a81548160ff021916908315150217905550565b6101be6102b1565b15156101c957600080fd5b600073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a360008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614905090565b6103106102b1565b151561031b57600080fd5b61032481610327565b50565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561036357600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505056fea165627a7a723058202d683fb2821a7548219f7d48079b2d354fd09c28eca374220b4a15aa22350f430029",
+  "deployedBytecode": "0x60806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680633afd1b6714610072578063715018a6146100895780638da5cb5b146100a05780638f32d59b146100f7578063f2fde38b14610126575b600080fd5b34801561007e57600080fd5b50610087610177565b005b34801561009557600080fd5b5061009e6101b6565b005b3480156100ac57600080fd5b506100b5610288565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561010357600080fd5b5061010c6102b1565b604051808215151515815260200191505060405180910390f35b34801561013257600080fd5b506101756004803603602081101561014957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610308565b005b61017f6102b1565b151561018a57600080fd5b600060149054906101000a900460ff1615600060146101000a81548160ff021916908315150217905550565b6101be6102b1565b15156101c957600080fd5b600073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a360008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614905090565b6103106102b1565b151561031b57600080fd5b61032481610327565b50565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561036357600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505056fea165627a7a723058202d683fb2821a7548219f7d48079b2d354fd09c28eca374220b4a15aa22350f430029",
+  "sourceMap": "227:213:0:-;;;291:5;268:28;;;;;;;;;;;;;;;;;;;;524:10:3;515:6;;:19;;;;;;;;;;;;;;;;;;582:6;;;;;;;;;;;549:40;;578:1;549:40;;;;;;;;;;;;227:213:0;;;;;;",
+  "deployedSourceMap": "227:213:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;303:77;;8:9:-1;5:2;;;30:1;27;20:12;5:2;303:77:0;;;;;;1347:137:3;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1347:137:3;;;;;;659:77;;8:9:-1;5:2;;;30:1;27;20:12;5:2;659:77:3;;;;;;;;;;;;;;;;;;;;;;;;;;;979:90;;8:9:-1;5:2;;;30:1;27;20:12;5:2;979:90:3;;;;;;;;;;;;;;;;;;;;;;;;;;;1655:107;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1655:107:3;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1655:107:3;;;;;;;;;;;;;;;;;;;;;;303:77:0;863:9:3;:7;:9::i;:::-;855:18;;;;;;;;366:7:0;;;;;;;;;;;365:8;355:7;;:18;;;;;;;;;;;;;;;;;;303:77::o;1347:137:3:-;863:9;:7;:9::i;:::-;855:18;;;;;;;;1445:1;1408:40;;1429:6;;;;;;;;;;;1408:40;;;;;;;;;;;;1475:1;1458:6;;:19;;;;;;;;;;;;;;;;;;1347:137::o;659:77::-;697:7;723:6;;;;;;;;;;;716:13;;659:77;:::o;979:90::-;1019:4;1056:6;;;;;;;;;;;1042:20;;:10;:20;;;1035:27;;979:90;:::o;1655:107::-;863:9;:7;:9::i;:::-;855:18;;;;;;;;1727:28;1746:8;1727:18;:28::i;:::-;1655:107;:::o;1906:183::-;1999:1;1979:22;;:8;:22;;;;1971:31;;;;;;;;2046:8;2017:38;;2038:6;;;;;;;;;;;2017:38;;;;;;;;;;;;2074:8;2065:6;;:17;;;;;;;;;;;;;;;;;;1906:183;:::o",
   "source": "pragma solidity ^0.5.0;\n\nimport \"client/node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol\";\n\n/** @title CircuitBreaker\n *  @dev Base contract which allows children to implement an emergency stop mechanism.\n */\ncontract CircuitBreaker is Ownable {\n    bool private stopped = false;\n\n    function toggle_active() public onlyOwner {\n        stopped = !stopped;\n    }\n\n    modifier stopIfEmergency(){ require(!stopped); _; }\n\n}\n",
-  "sourcePath": "/home/jm/Consensys/test/marketplace-dapp/contracts/CircuitBreaker.sol",
+  "sourcePath": "/home/jm/Consensys/test3/marketplace-dapp/contracts/CircuitBreaker.sol",
   "ast": {
-    "absolutePath": "/home/jm/Consensys/test/marketplace-dapp/contracts/CircuitBreaker.sol",
+    "absolutePath": "/home/jm/Consensys/test3/marketplace-dapp/contracts/CircuitBreaker.sol",
     "exportedSymbols": {
       "CircuitBreaker": [
-        711
+        28
       ]
     },
-    "id": 712,
+    "id": 29,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 684,
+        "id": 1,
         "literals": [
           "solidity",
           "^",
@@ -104,16 +104,16 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:2"
+        "src": "0:23:0"
       },
       {
         "absolutePath": "client/node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol",
         "file": "client/node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol",
-        "id": 685,
+        "id": 2,
         "nodeType": "ImportDirective",
-        "scope": 712,
-        "sourceUnit": 1532,
-        "src": "25:83:2",
+        "scope": 29,
+        "sourceUnit": 849,
+        "src": "25:83:0",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -123,42 +123,42 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 686,
+              "id": 3,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1531,
-              "src": "254:7:2",
+              "referencedDeclaration": 848,
+              "src": "254:7:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$1531",
+                "typeIdentifier": "t_contract$_Ownable_$848",
                 "typeString": "contract Ownable"
               }
             },
-            "id": 687,
+            "id": 4,
             "nodeType": "InheritanceSpecifier",
-            "src": "254:7:2"
+            "src": "254:7:0"
           }
         ],
         "contractDependencies": [
-          1531
+          848
         ],
         "contractKind": "contract",
         "documentation": "@title CircuitBreaker\n @dev Base contract which allows children to implement an emergency stop mechanism.",
         "fullyImplemented": true,
-        "id": 711,
+        "id": 28,
         "linearizedBaseContracts": [
-          711,
-          1531
+          28,
+          848
         ],
         "name": "CircuitBreaker",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 690,
+            "id": 7,
             "name": "stopped",
             "nodeType": "VariableDeclaration",
-            "scope": 711,
-            "src": "268:28:2",
+            "scope": 28,
+            "src": "268:28:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -166,10 +166,10 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 688,
+              "id": 5,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
-              "src": "268:4:2",
+              "src": "268:4:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_bool",
                 "typeString": "bool"
@@ -178,14 +178,14 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "66616c7365",
-              "id": 689,
+              "id": 6,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "bool",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "291:5:2",
+              "src": "291:5:0",
               "subdenomination": null,
               "typeDescriptions": {
                 "typeIdentifier": "t_bool",
@@ -197,26 +197,26 @@
           },
           {
             "body": {
-              "id": 700,
+              "id": 17,
               "nodeType": "Block",
-              "src": "345:35:2",
+              "src": "345:35:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 698,
+                    "id": 15,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 695,
+                      "id": 12,
                       "name": "stopped",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 690,
-                      "src": "355:7:2",
+                      "referencedDeclaration": 7,
+                      "src": "355:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -226,7 +226,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 697,
+                      "id": 14,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -234,15 +234,15 @@
                       "nodeType": "UnaryOperation",
                       "operator": "!",
                       "prefix": true,
-                      "src": "365:8:2",
+                      "src": "365:8:0",
                       "subExpression": {
                         "argumentTypes": null,
-                        "id": 696,
+                        "id": 13,
                         "name": "stopped",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 690,
-                        "src": "366:7:2",
+                        "referencedDeclaration": 7,
+                        "src": "366:7:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -253,68 +253,68 @@
                         "typeString": "bool"
                       }
                     },
-                    "src": "355:18:2",
+                    "src": "355:18:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 699,
+                  "id": 16,
                   "nodeType": "ExpressionStatement",
-                  "src": "355:18:2"
+                  "src": "355:18:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 701,
+            "id": 18,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 693,
+                "id": 10,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 692,
+                  "id": 9,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1465,
-                  "src": "335:9:2",
+                  "referencedDeclaration": 782,
+                  "src": "335:9:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "335:9:2"
+                "src": "335:9:0"
               }
             ],
             "name": "toggle_active",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 691,
+              "id": 8,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "325:2:2"
+              "src": "325:2:0"
             },
             "returnParameters": {
-              "id": 694,
+              "id": 11,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "345:0:2"
+              "src": "345:0:0"
             },
-            "scope": 711,
-            "src": "303:77:2",
+            "scope": 28,
+            "src": "303:77:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 709,
+              "id": 26,
               "nodeType": "Block",
-              "src": "412:25:2",
+              "src": "412:25:0",
               "statements": [
                 {
                   "expression": {
@@ -322,7 +322,7 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 705,
+                        "id": 22,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -330,15 +330,15 @@
                         "nodeType": "UnaryOperation",
                         "operator": "!",
                         "prefix": true,
-                        "src": "422:8:2",
+                        "src": "422:8:0",
                         "subExpression": {
                           "argumentTypes": null,
-                          "id": 704,
+                          "id": 21,
                           "name": "stopped",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 690,
-                          "src": "423:7:2",
+                          "referencedDeclaration": 7,
+                          "src": "423:7:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -357,21 +357,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 703,
+                      "id": 20,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1549,
-                        1550
+                        866,
+                        867
                       ],
-                      "referencedDeclaration": 1549,
-                      "src": "414:7:2",
+                      "referencedDeclaration": 866,
+                      "src": "414:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 706,
+                    "id": 23,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -379,55 +379,55 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "414:17:2",
+                    "src": "414:17:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 707,
+                  "id": 24,
                   "nodeType": "ExpressionStatement",
-                  "src": "414:17:2"
+                  "src": "414:17:0"
                 },
                 {
-                  "id": 708,
+                  "id": 25,
                   "nodeType": "PlaceholderStatement",
-                  "src": "433:1:2"
+                  "src": "433:1:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 710,
+            "id": 27,
             "name": "stopIfEmergency",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 702,
+              "id": 19,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "410:2:2"
+              "src": "410:2:0"
             },
-            "src": "386:51:2",
+            "src": "386:51:0",
             "visibility": "internal"
           }
         ],
-        "scope": 712,
-        "src": "227:213:2"
+        "scope": 29,
+        "src": "227:213:0"
       }
     ],
-    "src": "0:441:2"
+    "src": "0:441:0"
   },
   "legacyAST": {
-    "absolutePath": "/home/jm/Consensys/test/marketplace-dapp/contracts/CircuitBreaker.sol",
+    "absolutePath": "/home/jm/Consensys/test3/marketplace-dapp/contracts/CircuitBreaker.sol",
     "exportedSymbols": {
       "CircuitBreaker": [
-        711
+        28
       ]
     },
-    "id": 712,
+    "id": 29,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 684,
+        "id": 1,
         "literals": [
           "solidity",
           "^",
@@ -435,16 +435,16 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:2"
+        "src": "0:23:0"
       },
       {
         "absolutePath": "client/node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol",
         "file": "client/node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol",
-        "id": 685,
+        "id": 2,
         "nodeType": "ImportDirective",
-        "scope": 712,
-        "sourceUnit": 1532,
-        "src": "25:83:2",
+        "scope": 29,
+        "sourceUnit": 849,
+        "src": "25:83:0",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -454,42 +454,42 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 686,
+              "id": 3,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1531,
-              "src": "254:7:2",
+              "referencedDeclaration": 848,
+              "src": "254:7:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$1531",
+                "typeIdentifier": "t_contract$_Ownable_$848",
                 "typeString": "contract Ownable"
               }
             },
-            "id": 687,
+            "id": 4,
             "nodeType": "InheritanceSpecifier",
-            "src": "254:7:2"
+            "src": "254:7:0"
           }
         ],
         "contractDependencies": [
-          1531
+          848
         ],
         "contractKind": "contract",
         "documentation": "@title CircuitBreaker\n @dev Base contract which allows children to implement an emergency stop mechanism.",
         "fullyImplemented": true,
-        "id": 711,
+        "id": 28,
         "linearizedBaseContracts": [
-          711,
-          1531
+          28,
+          848
         ],
         "name": "CircuitBreaker",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 690,
+            "id": 7,
             "name": "stopped",
             "nodeType": "VariableDeclaration",
-            "scope": 711,
-            "src": "268:28:2",
+            "scope": 28,
+            "src": "268:28:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -497,10 +497,10 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 688,
+              "id": 5,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
-              "src": "268:4:2",
+              "src": "268:4:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_bool",
                 "typeString": "bool"
@@ -509,14 +509,14 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "66616c7365",
-              "id": 689,
+              "id": 6,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "bool",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "291:5:2",
+              "src": "291:5:0",
               "subdenomination": null,
               "typeDescriptions": {
                 "typeIdentifier": "t_bool",
@@ -528,26 +528,26 @@
           },
           {
             "body": {
-              "id": 700,
+              "id": 17,
               "nodeType": "Block",
-              "src": "345:35:2",
+              "src": "345:35:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 698,
+                    "id": 15,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 695,
+                      "id": 12,
                       "name": "stopped",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 690,
-                      "src": "355:7:2",
+                      "referencedDeclaration": 7,
+                      "src": "355:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -557,7 +557,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 697,
+                      "id": 14,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -565,15 +565,15 @@
                       "nodeType": "UnaryOperation",
                       "operator": "!",
                       "prefix": true,
-                      "src": "365:8:2",
+                      "src": "365:8:0",
                       "subExpression": {
                         "argumentTypes": null,
-                        "id": 696,
+                        "id": 13,
                         "name": "stopped",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 690,
-                        "src": "366:7:2",
+                        "referencedDeclaration": 7,
+                        "src": "366:7:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -584,68 +584,68 @@
                         "typeString": "bool"
                       }
                     },
-                    "src": "355:18:2",
+                    "src": "355:18:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 699,
+                  "id": 16,
                   "nodeType": "ExpressionStatement",
-                  "src": "355:18:2"
+                  "src": "355:18:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 701,
+            "id": 18,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 693,
+                "id": 10,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 692,
+                  "id": 9,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1465,
-                  "src": "335:9:2",
+                  "referencedDeclaration": 782,
+                  "src": "335:9:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "335:9:2"
+                "src": "335:9:0"
               }
             ],
             "name": "toggle_active",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 691,
+              "id": 8,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "325:2:2"
+              "src": "325:2:0"
             },
             "returnParameters": {
-              "id": 694,
+              "id": 11,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "345:0:2"
+              "src": "345:0:0"
             },
-            "scope": 711,
-            "src": "303:77:2",
+            "scope": 28,
+            "src": "303:77:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 709,
+              "id": 26,
               "nodeType": "Block",
-              "src": "412:25:2",
+              "src": "412:25:0",
               "statements": [
                 {
                   "expression": {
@@ -653,7 +653,7 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 705,
+                        "id": 22,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -661,15 +661,15 @@
                         "nodeType": "UnaryOperation",
                         "operator": "!",
                         "prefix": true,
-                        "src": "422:8:2",
+                        "src": "422:8:0",
                         "subExpression": {
                           "argumentTypes": null,
-                          "id": 704,
+                          "id": 21,
                           "name": "stopped",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 690,
-                          "src": "423:7:2",
+                          "referencedDeclaration": 7,
+                          "src": "423:7:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -688,21 +688,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 703,
+                      "id": 20,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1549,
-                        1550
+                        866,
+                        867
                       ],
-                      "referencedDeclaration": 1549,
-                      "src": "414:7:2",
+                      "referencedDeclaration": 866,
+                      "src": "414:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 706,
+                    "id": 23,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -710,42 +710,42 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "414:17:2",
+                    "src": "414:17:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 707,
+                  "id": 24,
                   "nodeType": "ExpressionStatement",
-                  "src": "414:17:2"
+                  "src": "414:17:0"
                 },
                 {
-                  "id": 708,
+                  "id": 25,
                   "nodeType": "PlaceholderStatement",
-                  "src": "433:1:2"
+                  "src": "433:1:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 710,
+            "id": 27,
             "name": "stopIfEmergency",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 702,
+              "id": 19,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "410:2:2"
+              "src": "410:2:0"
             },
-            "src": "386:51:2",
+            "src": "386:51:0",
             "visibility": "internal"
           }
         ],
-        "scope": 712,
-        "src": "227:213:2"
+        "scope": 29,
+        "src": "227:213:0"
       }
     ],
-    "src": "0:441:2"
+    "src": "0:441:0"
   },
   "compiler": {
     "name": "solc",
@@ -753,7 +753,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-24T17:56:04.544Z",
+  "updatedAt": "2019-01-26T21:54:53.152Z",
   "devdoc": {
     "details": "Base contract which allows children to implement an emergency stop mechanism.",
     "methods": {

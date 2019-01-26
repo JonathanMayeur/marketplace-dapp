@@ -256,7 +256,7 @@ class App extends Component {
 
   //* @dev buy article
   async buyArticle(_id){
-    const { web3, accounts, contract } = this.state;
+    const { accounts, contract } = this.state;
     var _this = this;
 
     await contract.methods.articles(_id).call().then(article => {

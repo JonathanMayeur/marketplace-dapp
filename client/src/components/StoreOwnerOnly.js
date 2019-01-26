@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, FormGroup, Form, FormText, Input, Button, Table } from 'reactstrap'
+import { Row, Col, FormGroup, Form, Input, Button, Table } from 'reactstrap'
 
 let styleP = { borderBottom: '1px solid black', padding: '5px 5px 2px 0px', margin: '10px', textAlign: 'left' };
 let styleF = { margin: '0px 0px 0px 10px' };
@@ -53,7 +53,7 @@ const AdminOnly = ({ isOwner, onClickAdd, onClickChange, articlesArray, balance,
                                 <td>{p.price}</td>
                                 <td>{p.buyer}</td>
                                 <td>{p.articleState}</td>
-                                {(p.articleState != "Sold") ?
+                                {(p.articleState !== "Sold") ?
                                     <td><Button onClick={_ => onClickChange(p.id)} color="info" size="sm">Change status</Button></td> :
                                     <td>-</td>
                                 }

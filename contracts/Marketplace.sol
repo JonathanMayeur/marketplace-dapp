@@ -77,6 +77,8 @@ contract Marketplace is Ownable, CircuitBreaker{
         return admins[adminAddress];
     }
 
+    /** @dev selfdestruct contract
+      */
     function kill() public onlyOwner{
         selfdestruct(msg.sender);
     }
